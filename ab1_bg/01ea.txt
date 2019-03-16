@@ -1,0 +1,9 @@
+people.inf.elte.hu/sila
+10:15
+
+Eltérés a rel.adatmodell és pl az SQL közt:
+A modellben sorok HALMAZA van szóval nincs megengedve több egyforma sor
+Az SQL kezel multihalmazt
+
+Szelekció: sorok kiválasztása
+Projekció: attribútumok kiválasztása

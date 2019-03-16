@@ -1,0 +1,7 @@
+:30
+
+NVL(érték, helyettesítés) - null esetén mi legyen
+concat: ||
+
+%: 0 v több ch
+_: egy ch

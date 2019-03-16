@@ -1,0 +1,11 @@
+2. Házi feladat:
+Adja meg Feladat_Hajok.pdf fájlban szereplõ feladatok megoldásait SQL SELECT utasítással.
+
+Beküldési határidõ
+==============
+Emailben (vzoli@inf.elte.hu) 2017.03.06. (hétfõ) éjfélig!
+
+
+
+// kiterjesztett relácós algebrai kifejezésben is ???
+// 9ből min 5

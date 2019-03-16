@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<WorkflowProcess Version="11.2.0.1.9" xmlns="http://xmlns.oracle.com/odmr11">
+    <Nodes>
+        <DataSource Status="Complete" Name="INSUR_CUST_LTV_SAMPLE" Id="10001">
+            <Icon SHAPE="RoundRectangle" YCOORD="26" XCOORD="82"></Icon>
+            <Messages/>
+            <CacheSettings GenerateCache="false" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10001" as (select /*+ inline */ "INSUR_CUST_LTV_SAMPLE"."MARITAL_STATUS", 
+"INSUR_CUST_LTV_SAMPLE"."STATE", 
+"INSUR_CUST_LTV_SAMPLE"."CREDIT_BALANCE", 
+"INSUR_CUST_LTV_SAMPLE"."TIME_AS_CUSTOMER", 
+"INSUR_CUST_LTV_SAMPLE"."CUSTOMER_ID", 
+"INSUR_CUST_LTV_SAMPLE"."MORTGAGE_AMOUNT", 
+"INSUR_CUST_LTV_SAMPLE"."BANK_FUNDS", 
+"INSUR_CUST_LTV_SAMPLE"."N_OF_DEPENDENTS", 
+"INSUR_CUST_LTV_SAMPLE"."HAS_CHILDREN", 
+"INSUR_CUST_LTV_SAMPLE"."SALARY", 
+"INSUR_CUST_LTV_SAMPLE"."SEX", 
+"INSUR_CUST_LTV_SAMPLE"."PROFESSION", 
+"INSUR_CUST_LTV_SAMPLE"."CREDIT_CARD_LIMITS", 
+"INSUR_CUST_LTV_SAMPLE"."REGION", 
+"INSUR_CUST_LTV_SAMPLE"."HOUSE_OWNERSHIP", 
+"INSUR_CUST_LTV_SAMPLE"."N_TRANS_WEB_BANK", 
+"INSUR_CUST_LTV_SAMPLE"."BUY_INSURANCE", 
+"INSUR_CUST_LTV_SAMPLE"."MONTHLY_CHECKS_WRITTEN", 
+"INSUR_CUST_LTV_SAMPLE"."N_TRANS_KIOSK", 
+"INSUR_CUST_LTV_SAMPLE"."AGE", 
+"INSUR_CUST_LTV_SAMPLE"."MONEY_MONTLY_OVERDRAWN", 
+"INSUR_CUST_LTV_SAMPLE"."LTV", 
+"INSUR_CUST_LTV_SAMPLE"."T_AMOUNT_AUTOM_PAYMENTS", 
+"INSUR_CUST_LTV_SAMPLE"."N_TRANS_TELLER", 
+"INSUR_CUST_LTV_SAMPLE"."CHECKING_AMOUNT", 
+"INSUR_CUST_LTV_SAMPLE"."N_TRANS_ATM", 
+"INSUR_CUST_LTV_SAMPLE"."LTV_BIN", 
+"INSUR_CUST_LTV_SAMPLE"."LAST", 
+"INSUR_CUST_LTV_SAMPLE"."N_MORTGAGES", 
+"INSUR_CUST_LTV_SAMPLE"."CAR_OWNERSHIP", 
+"INSUR_CUST_LTV_SAMPLE"."FIRST" 
+from "MINER"."INSUR_CUST_LTV_SAMPLE"  )</SQLExpression>
+            <Attributes>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="MARITAL_STATUS"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="STATE"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="CREDIT_BALANCE"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="TIME_AS_CUSTOMER"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="CUSTOMER_ID"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="MORTGAGE_AMOUNT"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="BANK_FUNDS"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="N_OF_DEPENDENTS"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="HAS_CHILDREN"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="SALARY"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="SEX"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="PROFESSION"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="CREDIT_CARD_LIMITS"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="REGION"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="HOUSE_OWNERSHIP"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="N_TRANS_WEB_BANK"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="BUY_INSURANCE"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="MONTHLY_CHECKS_WRITTEN"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="N_TRANS_KIOSK"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="AGE"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="MONEY_MONTLY_OVERDRAWN"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="LTV"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="T_AMOUNT_AUTOM_PAYMENTS"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="N_TRANS_TELLER"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="CHECKING_AMOUNT"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="N_TRANS_ATM"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="LTV_BIN"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="LAST"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="N_MORTGAGES"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="CAR_OWNERSHIP"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="FIRST"/>
+            </Attributes>
+            <SourceTable Name="INSUR_CUST_LTV_SAMPLE" Schema=""/>
+        </DataSource>
+        <DataSource Status="Complete" Name="INSUR_CUST_LTV_APPLY" Id="10011">
+            <Icon SHAPE="RoundRectangle" YCOORD="-111" XCOORD="375"></Icon>
+            <Messages/>
+            <CacheSettings GenerateCache="false" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10011" as (select /*+ inline */ "INSUR_CUST_LTV_SAMPLE"."MARITAL_STATUS", 
+"INSUR_CUST_LTV_SAMPLE"."STATE", 
+"INSUR_CUST_LTV_SAMPLE"."CREDIT_BALANCE", 
+"INSUR_CUST_LTV_SAMPLE"."TIME_AS_CUSTOMER", 
+"INSUR_CUST_LTV_SAMPLE"."CUSTOMER_ID", 
+"INSUR_CUST_LTV_SAMPLE"."MORTGAGE_AMOUNT", 
+"INSUR_CUST_LTV_SAMPLE"."BANK_FUNDS", 
+"INSUR_CUST_LTV_SAMPLE"."N_OF_DEPENDENTS", 
+"INSUR_CUST_LTV_SAMPLE"."HAS_CHILDREN", 
+"INSUR_CUST_LTV_SAMPLE"."SALARY", 
+"INSUR_CUST_LTV_SAMPLE"."SEX", 
+"INSUR_CUST_LTV_SAMPLE"."PROFESSION", 
+"INSUR_CUST_LTV_SAMPLE"."CREDIT_CARD_LIMITS", 
+"INSUR_CUST_LTV_SAMPLE"."REGION", 
+"INSUR_CUST_LTV_SAMPLE"."HOUSE_OWNERSHIP", 
+"INSUR_CUST_LTV_SAMPLE"."N_TRANS_WEB_BANK", 
+"INSUR_CUST_LTV_SAMPLE"."BUY_INSURANCE", 
+"INSUR_CUST_LTV_SAMPLE"."MONTHLY_CHECKS_WRITTEN", 
+"INSUR_CUST_LTV_SAMPLE"."N_TRANS_KIOSK", 
+"INSUR_CUST_LTV_SAMPLE"."AGE", 
+"INSUR_CUST_LTV_SAMPLE"."MONEY_MONTLY_OVERDRAWN", 
+"INSUR_CUST_LTV_SAMPLE"."LTV", 
+"INSUR_CUST_LTV_SAMPLE"."T_AMOUNT_AUTOM_PAYMENTS", 
+"INSUR_CUST_LTV_SAMPLE"."N_TRANS_TELLER", 
+"INSUR_CUST_LTV_SAMPLE"."CHECKING_AMOUNT", 
+"INSUR_CUST_LTV_SAMPLE"."N_TRANS_ATM", 
+"INSUR_CUST_LTV_SAMPLE"."LTV_BIN", 
+"INSUR_CUST_LTV_SAMPLE"."LAST", 
+"INSUR_CUST_LTV_SAMPLE"."N_MORTGAGES", 
+"INSUR_CUST_LTV_SAMPLE"."CAR_OWNERSHIP", 
+"INSUR_CUST_LTV_SAMPLE"."FIRST" 
+from "MINER"."INSUR_CUST_LTV_SAMPLE"  )</SQLExpression>
+            <Attributes>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="MARITAL_STATUS"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="STATE"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="CREDIT_BALANCE"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="TIME_AS_CUSTOMER"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="CUSTOMER_ID"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="MORTGAGE_AMOUNT"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="BANK_FUNDS"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="N_OF_DEPENDENTS"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="HAS_CHILDREN"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="SALARY"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="SEX"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="PROFESSION"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="CREDIT_CARD_LIMITS"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="REGION"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="HOUSE_OWNERSHIP"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="N_TRANS_WEB_BANK"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="BUY_INSURANCE"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="MONTHLY_CHECKS_WRITTEN"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="N_TRANS_KIOSK"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="AGE"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="MONEY_MONTLY_OVERDRAWN"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="LTV"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="T_AMOUNT_AUTOM_PAYMENTS"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="N_TRANS_TELLER"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="CHECKING_AMOUNT"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="N_TRANS_ATM"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="LTV_BIN"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="LAST"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="N_MORTGAGES"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="CAR_OWNERSHIP"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="FIRST"/>
+            </Attributes>
+            <SourceTable Name="INSUR_CUST_LTV_SAMPLE" Schema=""/>
+        </DataSource>
+        <DataProfile AutoSpec="Yes" Status="Complete" Name="Explore Data" Id="10002">
+            <Icon SHAPE="RoundRectangle" YCOORD="-104" XCOORD="100"></Icon>
+            <Messages/>
+            <CacheSettings GenerateCache="false" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10002" AS ( SELECT /*+ inline */  ATTR,
+  DATA_TYPE,
+  NULL_PERCENT,
+  DISTINCT_CNT,
+  DISTINCT_PERCENT,
+  MODE_VALUE,
+  AVG,
+  MIN,
+  MAX,
+  STD,
+  VAR,
+  SKEWNESS,
+  KURTOSIS,
+  HISTOGRAMS FROM OUTPUT_1_48)</SQLExpression>
+            <DataProfileInput>
+                <Attributes>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="MARITAL_STATUS"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="STATE"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="CREDIT_BALANCE"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="TIME_AS_CUSTOMER"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="CUSTOMER_ID"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="MORTGAGE_AMOUNT"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="BANK_FUNDS"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="N_OF_DEPENDENTS"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="HAS_CHILDREN"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="SALARY"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="SEX"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="PROFESSION"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="CREDIT_CARD_LIMITS"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="REGION"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="HOUSE_OWNERSHIP"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="N_TRANS_WEB_BANK"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="BUY_INSURANCE"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="MONTHLY_CHECKS_WRITTEN"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="N_TRANS_KIOSK"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="AGE"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="MONEY_MONTLY_OVERDRAWN"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="LTV"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="T_AMOUNT_AUTOM_PAYMENTS"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="N_TRANS_TELLER"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="CHECKING_AMOUNT"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="N_TRANS_ATM"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="LTV_BIN"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="LAST"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="N_MORTGAGES"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="CAR_OWNERSHIP"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="FIRST"/>
+                </Attributes>
+                <GroupByAttribute Status="Valid" DataType="VARCHAR2" Name="BUY_INSURANCE"/>
+            </DataProfileInput>
+            <DataProfileOutput>
+                <Attributes>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="ATTR"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="DATA_TYPE"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="NULL_PERCENT"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="DISTINCT_CNT"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="DISTINCT_PERCENT"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="MODE_VALUE"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="AVG"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="MIN"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="MAX"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="STD"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="VAR"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="SKEWNESS"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="KURTOSIS"/>
+                    <Attribute Status="Valid" DataType="ODMR_HISTOGRAMS" Name="HISTOGRAMS"/>
+                </Attributes>
+            </DataProfileOutput>
+            <DataProfileSettings>
+                <NumericalBins>10</NumericalBins>
+                <CategoricalBins>10</CategoricalBins>
+                <DateBins>10</DateBins>
+            </DataProfileSettings>
+            <StatisticTable CreationDate="2011-03-08T13:16:48.000000" Name="OUTPUT_1_48"/>
+            <SampleSettings GenerateCache="true" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <Random Seed="12345"/>
+                </Method>
+            </SampleSettings>
+        </DataProfile>
+        <CreateTable AutoSpec="Yes" Table="true" TableName="OUTPUT_2_48" Status="Complete" Name="DT_PREDICTIONS" Id="10014">
+            <Icon SHAPE="RoundRectangle" YCOORD="9" XCOORD="543"></Icon>
+            <Messages/>
+            <CacheSettings GenerateCache="false" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10014" AS ( SELECT /*+ inline */  "CLAS_DT_1_48_PRED" ,
+ "CLAS_DT_1_48_PROB" ,
+ "CUSTOMER_ID"  FROM "OUTPUT_2_48")</SQLExpression>
+            <DBAttributes>
+                <DBAttribute Index="No" Key="No" Status="Valid" DataType="VARCHAR2" Name="CLAS_DT_1_48_PRED"/>
+                <DBAttribute Index="No" Key="No" Status="Valid" DataType="NUMBER" Name="CLAS_DT_1_48_PROB"/>
+                <DBAttribute Index="No" Key="No" Status="Valid" DataType="VARCHAR2" Name="CUSTOMER_ID"/>
+            </DBAttributes>
+        </CreateTable>
+        <ClassificationBuild Status="Complete" Name="Class Build" Id="10008">
+            <Icon SHAPE="RoundRectangle" YCOORD="14" XCOORD="256"></Icon>
+            <Messages/>
+            <BuildDataSource SourceId="10001"/>
+            <CaseAttributes>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="CUSTOMER_ID"/>
+            </CaseAttributes>
+            <MiningAttributes>
+                <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="MARITAL_STATUS"/>
+                <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="STATE"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CREDIT_BALANCE"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="TIME_AS_CUSTOMER"/>
+                <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="CUSTOMER_ID"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MORTGAGE_AMOUNT"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="BANK_FUNDS"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_OF_DEPENDENTS"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="HAS_CHILDREN"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="SALARY"/>
+                <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="SEX"/>
+                <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="PROFESSION"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CREDIT_CARD_LIMITS"/>
+                <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="REGION"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="HOUSE_OWNERSHIP"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_WEB_BANK"/>
+                <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="BUY_INSURANCE"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MONTHLY_CHECKS_WRITTEN"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_KIOSK"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="AGE"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MONEY_MONTLY_OVERDRAWN"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="LTV"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="T_AMOUNT_AUTOM_PAYMENTS"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_TELLER"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CHECKING_AMOUNT"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_ATM"/>
+                <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="LTV_BIN"/>
+                <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="LAST"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_MORTGAGES"/>
+                <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CAR_OWNERSHIP"/>
+                <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="FIRST"/>
+            </MiningAttributes>
+            <TestDataSource>
+                <SplitData TestPercent="50.0"/>
+            </TestDataSource>
+            <TargetAttribute Status="Valid" DataType="VARCHAR2" Name="BUY_INSURANCE"/>
+            <Models>
+                <NaiveBayesModel UseForOutput="false" CreationDate="2011-03-08T13:21:27.000000" Status="Complete" Name="CLAS_NB_1_48" Id="10004">
+                    <InputMiningData MiningUsage="AUTO" DataUsage="AUTO">
+                        <MiningAttributes>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="MARITAL_STATUS"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="STATE"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CREDIT_BALANCE"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="TIME_AS_CUSTOMER"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="CUSTOMER_ID"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MORTGAGE_AMOUNT"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="BANK_FUNDS"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_OF_DEPENDENTS"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="HAS_CHILDREN"/>
+                            <MiningAttribute Input="No" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="SALARY"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="SEX"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="PROFESSION"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CREDIT_CARD_LIMITS"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="REGION"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="HOUSE_OWNERSHIP"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_WEB_BANK"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="BUY_INSURANCE"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MONTHLY_CHECKS_WRITTEN"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_KIOSK"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="AGE"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MONEY_MONTLY_OVERDRAWN"/>
+                            <MiningAttribute Input="No" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="LTV"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="T_AMOUNT_AUTOM_PAYMENTS"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_TELLER"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CHECKING_AMOUNT"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_ATM"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="LTV_BIN"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="LAST"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_MORTGAGES"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CAR_OWNERSHIP"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="FIRST"/>
+                        </MiningAttributes>
+                    </InputMiningData>
+                    <Performance>
+                        <Balanced WeightsTable="ODMR$13_21_08_121373DOPPSEH"/>
+                    </Performance>
+                    <Tuning>
+                        <None/>
+                    </Tuning>
+                    <NaiveBayesAlgo>
+                        <NABS_PAIRWISE_THRESHOLD>0.0</NABS_PAIRWISE_THRESHOLD>
+                        <NABS_SINGLETON_THRESHOLD>0.0</NABS_SINGLETON_THRESHOLD>
+                    </NaiveBayesAlgo>
+                </NaiveBayesModel>
+                <DecisionTreeModel UseForOutput="true" CreationDate="2011-03-08T13:21:24.000000" Status="Complete" Name="CLAS_DT_1_48" Id="10005">
+                    <InputMiningData MiningUsage="AUTO" DataUsage="AUTO">
+                        <MiningAttributes>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="MARITAL_STATUS"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="STATE"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CREDIT_BALANCE"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="TIME_AS_CUSTOMER"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="CUSTOMER_ID"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MORTGAGE_AMOUNT"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="BANK_FUNDS"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_OF_DEPENDENTS"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="HAS_CHILDREN"/>
+                            <MiningAttribute Input="No" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="SALARY"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="SEX"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="PROFESSION"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CREDIT_CARD_LIMITS"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="REGION"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="HOUSE_OWNERSHIP"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_WEB_BANK"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="BUY_INSURANCE"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MONTHLY_CHECKS_WRITTEN"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_KIOSK"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="AGE"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MONEY_MONTLY_OVERDRAWN"/>
+                            <MiningAttribute Input="No" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="LTV"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="T_AMOUNT_AUTOM_PAYMENTS"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_TELLER"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CHECKING_AMOUNT"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_ATM"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="LTV_BIN"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="LAST"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_MORTGAGES"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CAR_OWNERSHIP"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="FIRST"/>
+                        </MiningAttributes>
+                    </InputMiningData>
+                    <Performance>
+                        <Balanced WeightsTable="ODMR$13_21_08_105008OOXLDOB"/>
+                    </Performance>
+                    <Tuning>
+                        <None/>
+                    </Tuning>
+                    <DecisionTreeAlgo>
+                        <TREE_IMPURITY_METRIC>TREE_IMPURITY_GINI</TREE_IMPURITY_METRIC>
+                        <TREE_TERM_MAX_DEPTH>7</TREE_TERM_MAX_DEPTH>
+                        <TREE_TERM_MINPCT_NODE>0.05</TREE_TERM_MINPCT_NODE>
+                        <TREE_TERM_MINPCT_SPLIT>0.1</TREE_TERM_MINPCT_SPLIT>
+                        <TREE_TERM_MINREC_NODE>10</TREE_TERM_MINREC_NODE>
+                        <TREE_TERM_MINREC_SPLIT>20</TREE_TERM_MINREC_SPLIT>
+                    </DecisionTreeAlgo>
+                </DecisionTreeModel>
+                <CSupportVectorMachineModel UseForOutput="false" CreationDate="2011-03-08T13:21:23.000000" Status="Complete" Name="CLAS_SVM_1_48" Id="10006">
+                    <InputMiningData MiningUsage="AUTO" DataUsage="AUTO">
+                        <MiningAttributes>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="MARITAL_STATUS"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="STATE"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CREDIT_BALANCE"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="TIME_AS_CUSTOMER"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="CUSTOMER_ID"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MORTGAGE_AMOUNT"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="BANK_FUNDS"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_OF_DEPENDENTS"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="HAS_CHILDREN"/>
+                            <MiningAttribute Input="No" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="SALARY"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="SEX"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="PROFESSION"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CREDIT_CARD_LIMITS"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="REGION"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="HOUSE_OWNERSHIP"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_WEB_BANK"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="BUY_INSURANCE"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MONTHLY_CHECKS_WRITTEN"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_KIOSK"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="AGE"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MONEY_MONTLY_OVERDRAWN"/>
+                            <MiningAttribute Input="No" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="LTV"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="T_AMOUNT_AUTOM_PAYMENTS"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_TELLER"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CHECKING_AMOUNT"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_ATM"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="LTV_BIN"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="LAST"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_MORTGAGES"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CAR_OWNERSHIP"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="FIRST"/>
+                        </MiningAttributes>
+                    </InputMiningData>
+                    <Performance>
+                        <Balanced WeightsTable="ODMR$13_21_08_163050SEELGYO"/>
+                    </Performance>
+                    <Tuning>
+                        <None/>
+                    </Tuning>
+                    <CSupportVectorMachineAlgo>
+                        <SVMS_ACTIVE_LEARNING>SVMS_AL_ENABLE</SVMS_ACTIVE_LEARNING>
+                        <SVMS_CONV_TOLERANCE>0.0010</SVMS_CONV_TOLERANCE>
+                        <SVMS_KERNEL_FUNCTION>SVMS_LINEAR</SVMS_KERNEL_FUNCTION>
+                    </CSupportVectorMachineAlgo>
+                </CSupportVectorMachineModel>
+                <CGeneralizedLinearModel UseForOutput="false" CreationDate="2011-03-08T13:21:24.000000" Status="Complete" Name="CLAS_GLM_1_48" Id="10007">
+                    <InputMiningData MiningUsage="AUTO" DataUsage="AUTO">
+                        <MiningAttributes>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="MARITAL_STATUS"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="STATE"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CREDIT_BALANCE"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="TIME_AS_CUSTOMER"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="CUSTOMER_ID"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MORTGAGE_AMOUNT"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="BANK_FUNDS"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_OF_DEPENDENTS"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="HAS_CHILDREN"/>
+                            <MiningAttribute Input="No" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="SALARY"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="SEX"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="PROFESSION"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CREDIT_CARD_LIMITS"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="REGION"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="HOUSE_OWNERSHIP"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_WEB_BANK"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="BUY_INSURANCE"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MONTHLY_CHECKS_WRITTEN"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_KIOSK"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="AGE"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="MONEY_MONTLY_OVERDRAWN"/>
+                            <MiningAttribute Input="No" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="LTV"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="T_AMOUNT_AUTOM_PAYMENTS"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_TELLER"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CHECKING_AMOUNT"/>
+                            <MiningAttribute Input="Yes" MiningType="Numerical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_TRANS_ATM"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="LTV_BIN"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="LAST"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="N_MORTGAGES"/>
+                            <MiningAttribute Input="Yes" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="NUMBER" Name="CAR_OWNERSHIP"/>
+                            <MiningAttribute Input="No" MiningType="Categorical" AutoPrep="Yes" Status="Valid" DataType="VARCHAR2" Name="FIRST"/>
+                        </MiningAttributes>
+                    </InputMiningData>
+                    <Performance>
+                        <Balanced WeightsTable="ODMR$13_21_08_194379JPJXVEF"/>
+                    </Performance>
+                    <Tuning>
+                        <None/>
+                    </Tuning>
+                    <CGeneralizedLinearAlgo>
+                        <GLMS_CONF_LEVEL>0.95</GLMS_CONF_LEVEL>
+                        <GLMS_RIDGE_REGRESSION>GLMS_RIDGE_REG_ENABLE</GLMS_RIDGE_REGRESSION>
+                    </CGeneralizedLinearAlgo>
+                </CGeneralizedLinearModel>
+            </Models>
+            <TestSettings>
+                <TopNTargets Value="100"/>
+            </TestSettings>
+            <Results>
+                <ClassificationResult Status="Complete" ModelId="10006" CreationDate="2011-03-08T13:21:38.000000" Name="CLAS_SVM_1_48">
+                    <TestMetrics CreationDate="2011-03-08T13:21:37.000000" Name="ODMR$13_21_37_348275VJWMGSU"/>
+                    <ConfusionMatrix CreationDate="2011-03-08T13:21:37.000000" Name="ODMR$13_21_37_378849GXQQCMY"/>
+                    <Lifts>
+                        <Lift TargetValue="No" CreationDate="2011-03-08T13:21:37.000000" Name="ODMR$13_21_37_504883HLADFTN"/>
+                        <Lift TargetValue="Yes" CreationDate="2011-03-08T13:21:37.000000" Name="ODMR$13_21_37_639547RPVVGVD"/>
+                    </Lifts>
+                    <ROCs>
+                        <ROC TargetValue="No" CreationDate="2011-03-08T13:21:38.000000" Name="ODMR$13_21_37_683643GFXFXGC"/>
+                        <ROC TargetValue="Yes" CreationDate="2011-03-08T13:21:38.000000" Name="ODMR$13_21_38_137174YRSZXYZ"/>
+                        <AreaUnderCurve TargetValue="No" Area="0.8546899557113647"/>
+                        <AreaUnderCurve TargetValue="Yes" Area="0.8567185997962952"/>
+                    </ROCs>
+                </ClassificationResult>
+                <ClassificationResult Status="Complete" ModelId="10007" CreationDate="2011-03-08T13:21:39.000000" Name="CLAS_GLM_1_48">
+                    <TestMetrics CreationDate="2011-03-08T13:21:38.000000" Name="ODMR$13_21_38_962016ZEJMHAN"/>
+                    <ConfusionMatrix CreationDate="2011-03-08T13:21:39.000000" Name="ODMR$13_21_38_977298YHLYYWB"/>
+                    <Lifts>
+                        <Lift TargetValue="No" CreationDate="2011-03-08T13:21:39.000000" Name="ODMR$13_21_39_030255DEUWPIS"/>
+                        <Lift TargetValue="Yes" CreationDate="2011-03-08T13:21:39.000000" Name="ODMR$13_21_39_068678SMPCPHL"/>
+                    </Lifts>
+                    <ROCs>
+                        <ROC TargetValue="No" CreationDate="2011-03-08T13:21:39.000000" Name="ODMR$13_21_39_104582PKIMPFK"/>
+                        <ROC TargetValue="Yes" CreationDate="2011-03-08T13:21:39.000000" Name="ODMR$13_21_39_265702RJMWJFI"/>
+                        <AreaUnderCurve TargetValue="No" Area="0.8752169609069824"/>
+                        <AreaUnderCurve TargetValue="Yes" Area="0.87754887342453"/>
+                    </ROCs>
+                </ClassificationResult>
+                <ClassificationResult Status="Complete" ModelId="10004" CreationDate="2011-03-08T13:21:41.000000" Name="CLAS_NB_1_48">
+                    <TestMetrics CreationDate="2011-03-08T13:21:40.000000" Name="ODMR$13_21_40_554230SIMUNXS"/>
+                    <ConfusionMatrix CreationDate="2011-03-08T13:21:40.000000" Name="ODMR$13_21_40_570921LIQYBLO"/>
+                    <Lifts>
+                        <Lift TargetValue="No" CreationDate="2011-03-08T13:21:40.000000" Name="ODMR$13_21_40_626728IGDNUOS"/>
+                        <Lift TargetValue="Yes" CreationDate="2011-03-08T13:21:41.000000" Name="ODMR$13_21_40_665704NMBTZPZ"/>
+                    </Lifts>
+                    <ROCs>
+                        <ROC TargetValue="No" CreationDate="2011-03-08T13:21:41.000000" Name="ODMR$13_21_41_039623ZCYANGR"/>
+                        <ROC TargetValue="Yes" CreationDate="2011-03-08T13:21:41.000000" Name="ODMR$13_21_41_271512WMJDQLT"/>
+                        <AreaUnderCurve TargetValue="No" Area="0.8129875659942627"/>
+                        <AreaUnderCurve TargetValue="Yes" Area="0.8131862282752991"/>
+                    </ROCs>
+                </ClassificationResult>
+                <ClassificationResult Status="Complete" ModelId="10005" CreationDate="2011-03-08T13:21:42.000000" Name="CLAS_DT_1_48">
+                    <TestMetrics CreationDate="2011-03-08T13:21:41.000000" Name="ODMR$13_21_41_539485APFNUJM"/>
+                    <ConfusionMatrix CreationDate="2011-03-08T13:21:41.000000" Name="ODMR$13_21_41_555670FWTZUOX"/>
+                    <Lifts>
+                        <Lift TargetValue="No" CreationDate="2011-03-08T13:21:41.000000" Name="ODMR$13_21_41_612158JDBCVPL"/>
+                        <Lift TargetValue="Yes" CreationDate="2011-03-08T13:21:41.000000" Name="ODMR$13_21_41_653740FYCGRKJ"/>
+                    </Lifts>
+                    <ROCs>
+                        <ROC TargetValue="No" CreationDate="2011-03-08T13:21:41.000000" Name="ODMR$13_21_41_690432GUOAGZH"/>
+                        <ROC TargetValue="Yes" CreationDate="2011-03-08T13:21:41.000000" Name="ODMR$13_21_41_833233CPFIJSV"/>
+                        <AreaUnderCurve TargetValue="No" Area="0.8914775848388672"/>
+                        <AreaUnderCurve TargetValue="Yes" Area="0.8914775848388672"/>
+                    </ROCs>
+                </ClassificationResult>
+            </Results>
+        </ClassificationBuild>
+        <Apply ColumnOutputOrder="SupplementalColumns" Status="Complete" Name="Apply Model" Id="10010">
+            <Icon SHAPE="RoundRectangle" YCOORD="10" XCOORD="398"></Icon>
+            <Messages/>
+            <CacheSettings GenerateCache="false" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10010" as (SELECT /*+ inline */
+"CUSTOMER_ID"
+, PREDICTION("MINER"."CLAS_DT_1_48" USING *) "CLAS_DT_1_48_PRED"
+, PREDICTION_PROBABILITY("MINER"."CLAS_DT_1_48" USING *) "CLAS_DT_1_48_PROB"
+ FROM {INPUT_SOURCE} )</SQLExpression>
+            <SupplementalAttributes AutoSpec="No">
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="CUSTOMER_ID"/>
+            </SupplementalAttributes>
+            <OutputColumns AutoSpec="Yes">
+                <OutputColumn>
+                    <Model NodeId="10008" IsModelBuilt="true" ModelId="10005" UseForOutput="true" Status="Valid" MiningAlgorithm="DECISION_TREE" MiningFunction="CLASSIFICATION" Name="CLAS_DT_1_48" Schema=""/>
+                    <Prediction>
+                        <CostOption>
+                            <None/>
+                        </CostOption>
+                        <Column Name="CLAS_DT_1_48_PRED"/>
+                    </Prediction>
+                </OutputColumn>
+                <OutputColumn>
+                    <Model NodeId="10008" IsModelBuilt="true" ModelId="10005" UseForOutput="true" Status="Valid" MiningAlgorithm="DECISION_TREE" MiningFunction="CLASSIFICATION" Name="CLAS_DT_1_48" Schema=""/>
+                    <PredictionProbability>
+                        <Column Name="CLAS_DT_1_48_PROB"/>
+                    </PredictionProbability>
+                </OutputColumn>
+            </OutputColumns>
+        </Apply>
+    </Nodes>
+    <Links>
+        <Link Label="From &quot;INSUR_CUST_LTV_SAMPLE&quot; to &quot;Explore Data&quot;" Name="Link" To="10002" From="10001" Id="10003">
+            <ConnectorGraphicsInfo>
+                <Coordinates YCoordinate="0.0" XCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+        <Link Label="From &quot;INSUR_CUST_LTV_SAMPLE&quot; to &quot;Class Build&quot;" Name="Link" To="10008" From="10001" Id="10009">
+            <ConnectorGraphicsInfo>
+                <Coordinates YCoordinate="0.0" XCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+        <Link Label="From &quot;Class Build&quot; to &quot;Apply Model&quot;" Name="Link" To="10010" From="10008" Id="10012">
+            <ConnectorGraphicsInfo>
+                <Coordinates YCoordinate="0.0" XCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+        <Link Label="From &quot;INSUR_CUST_LTV_APPLY&quot; to &quot;Apply Model&quot;" Name="Link" To="10010" From="10011" Id="10013">
+            <ConnectorGraphicsInfo>
+                <Coordinates YCoordinate="0.0" XCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+        <Link Label="From &quot;Apply Model&quot; to &quot;DT_PREDICTIONS&quot;" Name="Link" To="10014" From="10010" Id="10015">
+            <ConnectorGraphicsInfo>
+                <Coordinates YCoordinate="0.0" XCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+    </Links>
+</WorkflowProcess>

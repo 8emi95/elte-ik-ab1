@@ -1,0 +1,20 @@
+SET serveroutput ON
+
+VARIABLE C        NUMBER
+VARIABLE PARITAS  VARCHAR2(10)
+
+ACCEPT A NUMBER PROMPT 'Egyik: '
+ACCEPT B PROMPT 'Másik: '
+
+BEGIN
+  :C := &A + TO_NUMBER(&B);
+
+  IF MOD(:C,2) = 1
+  THEN
+    :PARITAS :='PÁRATLAN';
+  ELSE
+    :PARITAS := 'PÁROS';
+  END IF;
+  DBMS_OUTPUT.PUT_LINE('Az összeg: '||:C||',  '|| :PARITAS);
+END;
+/

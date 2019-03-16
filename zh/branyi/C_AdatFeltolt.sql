@@ -1,0 +1,18 @@
+INSERT INTO PELDANY VALUES (1, 'NodeView', 'string, string', 'private');
+INSERT INTO PELDANY VALUES (2, 'MyNode', '', 'public');
+INSERT INTO PELDANY VALUES (3, 'MyNode', 'string, int', 'private');
+INSERT INTO PELDANY VALUES (4, 'NodeView2', 'string, int', 'protected');
+INSERT INTO PELDANY VALUES (5, 'NodeView', 'string, string', 'private');
+INSERT INTO PELDANY VALUES (6, 'Test', 'real, string', 'private');
+INSERT INTO PELDANY VALUES (7, 'MyNode', 'real, int', 'private');
+INSERT INTO PELDANY VALUES (8, 'Test, 'string, int', 'public');
+INSERT INTO PELDANY VALUES (9, 'NodeView2', 'int, string', 'private');
+INSERT INTO PELDANY VALUES (10, 'NodeView2', 'real, real', 'private');
+INSERT INTO PELDANY VALUES (11, 'NodeView2', 'string', 'protected');
+INSERT INTO PELDANY VALUES (12, 'MyNode', 'real', 'public');
+INSERT INTO PELDANY VALUES (13, 'MyNode', 'int', 'private');
+INSERT INTO PELDANY VALUES (14, 'NodeView', '', 'private');
+INSERT INTO PELDANY VALUES (15, 'NodeView', 'string', 'protected');
+INSERT INTO PELDANY VALUES (16, 'Test', '', 'private');
+INSERT INTO PELDANY VALUES (17, 'Model', 'string', 'public');
+INSERT INTO PELDANY VALUES (18, 'Model', 'string, string', 'private');

@@ -1,0 +1,11 @@
+szeret tábla:
+ki az aki ezt és ezt szereti: metszet mûvelet vagy önmagával kapcsolás
+ki az aki ezt vagy ezt szereti: unió mûvelet vagy OR
+
+to_char(dátum, formátum) - dd:hányadika, d:hét hányadik napja, day:nap neve
+to_date(dátum, formátum)
+instr
+nvl(érték, hanull)
+coalesce(érték, hanull, hanull, ...)
+
+select * from employees where hire_date  > to_date('1995.08.01', 'yyyy.mm.dd')

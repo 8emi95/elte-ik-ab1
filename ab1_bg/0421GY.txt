@@ -1,0 +1,58 @@
++1
+
+-----KIÍRÁS, HELYETTESÍTÕ-----
+set serveroutput on;
+begin
+DBMS_OUTPUT.PUT_LINE('Szia ' || '&Nev');
+DBMS_OUTPUT.PUT_LINE('A kedvenc számod: ' || &Szam);
+end;
+
+-----TO_DATE-----
+DBMS_OUTPUT.PUT_LINE('Dátum: ' || TO_DATE('&Datum', 'YYYY MM DD'));
+
+SQL%ROWCOUNT - elõzõ frissítés/delete
+
+CREATE TABLE tábla AS lekérdezés
+de ezeket a BEGIN-ENDen kívül!!!
+
+-----KURZOR a DECLARE blokkban-----
+  CURSOR c1 IS
+    SELECT employee_id, job_id, salary FROM employees
+    WHERE salary > 2000; 
+
+-----LÉPTETÉS-----
+  OPEN c1;
+  LOOP  -- Fetches 2 columns into variables
+    FETCH c1 INTO v_lastname, v_jobid;
+    EXIT WHEN c1%NOTFOUND;
+    DBMS_OUTPUT.PUT_LINE( RPAD(v_lastname, 25, ' ') || v_jobid );
+  END LOOP;
+  CLOSE c1;
+
+-----PARAMÉTERES KURZOR----
+  CURSOR c1 (job VARCHAR2, max_wage NUMBER) IS
+    SELECT * FROM employees
+    WHERE job_id = job
+    AND salary > max_wage;
+  OPEN c1(param1, param2);
+
+-----KURZOR UPDATE-HEZ-----
+DECLARE
+  my_emp_id NUMBER(6);
+  my_job_id VARCHAR2(10);
+  my_sal    NUMBER(8,2);
+  CURSOR c1 IS
+    SELECT employee_id, job_id, salary
+    FROM employees FOR UPDATE;
+BEGIN
+  OPEN c1;
+  LOOP
+    FETCH c1 INTO my_emp_id, my_job_id, my_sal;
+    IF my_job_id = 'SA_REP' THEN
+      UPDATE employees
+      SET salary = salary * 1.02
+      WHERE CURRENT OF c1;
+    END IF;
+    EXIT WHEN c1%NOTFOUND;
+  END LOOP;
+END;

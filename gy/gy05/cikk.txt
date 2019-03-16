@@ -1,0 +1,34 @@
+drop synonym CIKK;
+drop synonym PROJEKT;
+drop synonym SZALLITO;
+drop synonym SZALLIT;
+
+create or replace synonym CIKK for vzoli.CIKK;
+create or replace synonym PROJEKT for vzoli.PROJEKT;
+create or replace synonym SZALLITO for vzoli.SZALLITO;
+create or replace synonym SZALLIT for vzoli.SZALLIT;
+
+drop table CIKK;
+drop table PROJEKT;
+drop table SZALLITO;
+drop table SZALLIT;
+
+create table SZALLIT as select * from VZOLI.SZALLIT;
+create table SZALLITO as select * from VZOLI.SZALLITO;
+create table PROJEKT as select * from VZOLI.PROJEKT;
+create table CIKK as select * from VZOLI.CIKK;
+
+grant select on SZALLIT to public;
+grant select on SZALLITO to public;
+grant select on PROJEKT to public;
+grant select on CIKK to public;
+
+describe SZALLIT;
+describe SZALLITO;
+describe PROJEKT;
+describe CIKK;
+
+select * from SZALLIT;
+select * from SZALLITO;
+select * from PROJEKT;
+select * from CIKK;

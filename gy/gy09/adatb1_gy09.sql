@@ -1,0 +1,131 @@
+select sum(fizetes+nvl(jutalek,0))
+from dolgozo;
+
+set SERVEROUTPUT ON
+declare
+l_jov number; l = lokális
+l_maxj number;
+l_minj number;
+begin
+    select sum(fizetes+nvl(jutalek,0)) JOV,
+            max(fizetes+nvl(jutalek,0)) MAXJ,
+            min(fizetes+nvl(jutalek,0)) MINJ,
+    into l_jov, l_maxj, l_minj; -- missing expression
+    from dolgozo;
+    dbms_output.put_line(l_jov || ',' || l_maxj || ',' || l_minj)
+end;
+
+
+DECLARE CURSOR C_EMP IS
+SELECT t.*,12*SALARY*(1+NVL(COMMISSION_PCT,0)) EVES_FIZ 
+FROM EMPLOYEES t 
+WHERE DEPARTMENT_ID=&OSZTALYKOD;
+R C_EMP%ROWTYPE; 
+SUMMA NUMBER;
+BEGIN
+SUMMA:=0; 
+OPEN C_EMP;
+LOOP
+    FETCH C_EMP INTO R ;
+    EXIT WHEN C_EMP%NOTFOUND;
+    SUMMA:=SUMMA+R.SALARY;
+        DBMS_OUTPUT.PUT_LINE(
+        C_EMP%ROWCOUNT||'. DOLGOZO:='||RPAD(R.LAST_NAME,15,' ')
+        ||' FIZ:'||R.SALARY||' FONOKE:'||R.MANAGER_ID
+        ||' EVES JOV:'||R.EVES_FIZ);
+END LOOP;
+DBMS_OUTPUT.PUT_LINE(
+CHR(10)||C_EMP%ROWCOUNT||' OSSZES FIZETES: '||SUMMA);
+CLOSE C_EMP;
+END;
+/
+
+
+select d.*,12*(fizetes+nvl(jutalek, 0)) EVES_FIZ
+from dolgozo d;
+
+SET SERVEROUTPUT ON
+DECLARE
+CURSOR C_DOLGOZO IS
+SELECT d.*,12*(fizetes+nvl(jutalek, 0)) EVES_FIZ 
+FROM dolgozo d
+WHERE OAZON=&OSZTALYKOD;
+SOR C_DOLGOZO%ROWTYPE; 
+SUMMA NUMBER;
+BEGIN
+SUMMA:=0; 
+OPEN C_DOLGOZO;
+LOOP
+    FETCH C_DOLGOZO INTO SOR;
+    EXIT WHEN C_DOLGOZO%NOTFOUND;
+    SUMMA:=SUMMA+SOR.FIZETES;
+        DBMS_OUTPUT.PUT_LINE(
+        C_DOLGOZO%ROWCOUNT||'. DOLGOZO:='||RPAD(SOR.DNEV,15,' ')
+        ||' FIZ:'||SOR.FIZETES||' FONOKE:'||SOR.FONOKE
+        ||' EVES JOV:'||SOR.EVES_FIZ);
+END LOOP;
+DBMS_OUTPUT.PUT_LINE(
+CHR(10)||C_DOLGOZO%ROWCOUNT||' OSSZES FIZETES: '||SUMMA);
+CLOSE C_DOLGOZO;
+END;
+/
+
+
+
+-- wtfffffffffffffffffffffffffffffffffffffffffffffff
+DECLARE
+CURSOR C_DOLGOZO IS
+SELECT d.*,12*(fizetes+nvl(jutalek, 0)) EVES_FIZ 
+FROM dolgozo d
+WHERE OAZON=&OSZTALYKOD;
+SOR C_DOLGOZO%ROWTYPE; 
+SUMMA NUMBER;
+
+--OK
+SET SERVEROUTPUT ON
+BEGIN
+SUMMA:=0;
+CTN := 0;
+FOR SOR IN (SELECT d.*,12*(fizetes+nvl(jutalek, 0)) EVES_FIZ 
+FROM dolgozo d
+WHERE OAZON=&OSZTALYKOD;
+LOOP
+CNT:=CNT+1;
+SUMMA:=SUMMA+SOR.FIZETES;
+DBMS_OUTPUT.PUT_LINE( --??
+CHR(10)||C_DOLGOZO%ROWCOUNT||' OSSZES FIZETES: '||SUMMA);)
+
+LOOP -- ???
+    FETCH C_DOLGOZO INTO SOR;
+    EXIT WHEN C_DOLGOZO%NOTFOUND;
+    SUMMA:=SUMMA+R.FIZETES;
+        DBMS_OUTPUT.PUT_LINE(
+        C_DOLGOZO%ROWCOUNT||'. DOLGOZO:='||RPAD(SOR.DNEV,15,' ')
+        ||' FIZ:'||SOR.FIZETES||' FONOKE:'||SOR.FONOKE
+        ||' EVES JOV:'||SOR.EVES_FIZ);
+END LOOP;
+DBMS_OUTPUT.PUT_LINE(
+CHR(10)||C_DOLGOZO%ROWCOUNT||' OSSZES FIZETES: '||SUMMA);
+CLOSE C_DOLGOZO;
+END;
+/
+
+
+
+-- átírni a magyar táblára
+DECLARE
+    CURSOR C_DEPT IS
+    SELECT * FROM departments;
+    CURSOR C_EMP (C_DEPTNO NUMBER) IS
+    SELECT * FROM employees
+    WHERE DEPARTMENT_ID=C_DEPTNO;
+    BEGIN
+    DBMS_OUTPUT.ENABLE(1000000);
+    FOR R IN C_DEPT LOOP
+        DBMS_OUTPUT.PUT_LINE(CHR(10)||R.DEPARTMENT_ID||' '||R.DEPARTMENT_NAME||CHR(10));
+        FOR Q IN C_EMP(R.DEPARTMENT_ID) LOOP
+            DBMS_OUTPUT.PUT_LINE(C_EMP%ROWCOUNT||'. DOLGOZO:'||Q.EMPLOYEE_ID||' '||Q.LAST_NAME);
+        END LOOP;
+    END LOOP;
+END;
+/

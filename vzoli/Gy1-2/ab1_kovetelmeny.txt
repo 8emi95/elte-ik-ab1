@@ -1,0 +1,30 @@
+Informatikus BSC  
+Adatbázisok 1 gyakorlat 2016/2017 II. félév
+Gyakorlatvezetõ: dr. Vincellér Zoltán
+
+A gyakorlati jegy megszerzésének feltételei
+
+A feltételeket a Hallgatói követelményrendszer határozza meg, ezek lényege:
+
+- A gyakorlatokon való jelenlét (maximum 4 hiányzás megengedett). 
+  Ennél több hiányzás esetén gyakjegy uv-val sem szerezhetõ meg a gyakorlati jegy.
+
+- A félév során megírandó 2 Zh mindegyikén 1-estõl különbözõ jegy megszerzése.
+
+- A 2 ZH várható idõpontja:
+	1. ZH: 2017.03.27-31.
+	2. ZH: 2017.05.15-19.
+	
+- A gyakorlati jegyet a 2 ZH százalékpontjainak átlaga adja az alábbi táblázat szerint:
+			-tól	-ig		Gyak.jegy
+			0		40		1
+			41		55		2
+			56		70		3
+			71		85		4
+			86		100		5
+  
+- Az egyik 1-es zh a vizsgaidõszak elsõ hetében javítható.
+
+- A javítás után is 1-es zh-val rendelkezõ hallgató gyakorlati jegye elégtelen. Ennek 
+  kijavítására gyakorlati jegy uv-val van lehetõség a vizsgaidõszak második hetében.
+  

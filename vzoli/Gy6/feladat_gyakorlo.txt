@@ -1,0 +1,82 @@
+Külsõ join  mûvelet:   (+)
+===================
+
+A (+) csak a WHERE után használható. 
+A mûveletet megelõzõ oszlop lesz a külsõ join oszlop. Vagyis ezen oszlop 
+értékei helyett fog NULL értékeket szerepeltetni az Oracle a lekérdezésben, 
+amennyiben a másik táblabeli sornak nincs párja.
+
+pl. SELECT ename, dname FROM emp, dept 
+    WHERE dept.deptno = emp.deptno (+)
+
+Ez vissza fogja adni azt az osztályt is, amelyiken nem dolgozik senki.
+Ha a két táblát összekapcsoló JOIN feltétel több oszlopot is tartalmaz, 
+akkor a "(+)" jelet minden oszlop után ki kell tenni.
+
+A "(+)" jelet csak oszlopra lehet alkalmazni nem pedig tetszõleges 
+kifejezésre, de egy kifejezésben szerepelhet "(+)" jellel megjelölt oszlop.
+"(+)" jellel megjelölt oszlop nem szerepelhet IN összehasonlításban (kivéve 
+ha egy konstans van a zárójelben), nem hasonlítható össze SUBSELECT-tel, és 
+a rá vonatkozó feltételt nem lehet OR-ral összekapcsolni más feltétellel.
+Egy SELECT utasításban egy táblát csak egy másikkal lehet külsõ join 
+mûvelet segítségével összekötni. 
+Nem lehet egyszerre mindkét táblára külsõ joint alkalmazni.
+
+Nem megengedett utasítások az alábbiak!!!
+=========================================
+SELECT ename, dname FROM emp, dept 
+WHERE dept.deptno = emp.deptno (+) OR emp.deptno=10
+
+SELECT ename FROM emp
+WHERE emp.deptno (+) IN (SELECT deptno FROM dept)
+
+SELECT ename FROM emp
+WHERE emp.deptno (+) IN (10, 20)
+
+De megengedett az alábbi utasítás:
+==================================
+
+SELECT ename FROM emp
+WHERE emp.deptno (+) IN (10)
+ 
+További gyakorló feladatok újabb táblákra:
+
+VZOLI.CIKK       (ckod, cnev, szin, suly)
+VZOLI.PROJEKT    (pkod, pnev, helyszin)
+VZOLI.SZALLITO   (szkod, sznev, statusz, telephely)
+VZOLI.SZALLIT    (szkod, ckod, pkod, mennyiseg, datum) 
+
+Alkérdés (Subselect)  =ANY, <ALL, IN, EXISTS ...
+
+- Adjuk meg azon cikkek kódját és nevét, amelyeket valamelyik pécsi szállító szállít.
+- Adjuk meg, hogy hány ilyen cikk van
+- Adjuk meg azon cikkek kódját és nevét, amelyeket egyik pécsi szállító sem szállít.
+- Adjuk meg, hogy hány ilyen cikk van
+- Adjuk meg azon szállítók nevét, akiknek a státusza 10-nél nagyobb és 
+  budapesti projektbe szállítanak szék nevû cikket.
+- Adjuk meg azon projektek kódját, amelyekhez szállítanak kék cikket.
+- Adjuk meg azon projektek kódját és nevét, amelyekhez szállítanak kék cikket.
+- Adjuk meg azon projektek kódját és nevét, amelyekhez nem szállítanak kék cikket.
+- Adjuk meg azon cikkek kódját, amelyeket szállítanak valahova.
+  Adjuk meg, hogy hány ilyen cikk van.
+- Adjuk meg azon cikkek kódját, amelyeket nem szállítanak sehova.
+- Adjuk meg azon cikkek kódját és nevét, amelyeket sehova nem szállítanak.
+- Adjuk meg azon kék cikkek kódját, amelyeket szállítanak valahova.
+- Adjuk meg azon piros színû cikkek kódját, amelyeket sehova nem szállítanak.
+- Adjuk meg azon cikkek nevét, amelyeket minden projekthez szállítanak.
+- Melyik cikket hány különbözõ projekthez szállítják? (ckod, cnev, darab)
+- Melyik cikket szállítják a legtöbb projekthez? 
+  (Ha több ilyen cikk van, elég 1-et megadni közülük -> ROWNUM segítségével)
+- Adjuk meg azon cikkek nevét, amelyeket valamelyik projekthez nem szállítanak.
+- Adjuk meg azon cikkek kódját és nevét, amelyeket kevesebb mint 6 projekthez szállítanak.
+- Adjuk meg azon zöld színû cikkek nevét, amelyeket minden projekthez szállítanak.
+- Adjuk meg azon zöld színû cikkek nevét, amelyet valamelyik projekthez nem szállítanak.
+- Adjuk meg azon projektek nevét, amelyekhez minden zöld színû cikket szállítanak.
+- Adjuk meg azon szállítók nevét és telephelyét, akik valamelyik cikket 
+  (nem feltétlenül ugyanazt) minden projekthez szállítják.
+- Adjuk meg azon szállítók nevét és telephelyét, akik valamelyik cikket 
+  (nem feltétlenül ugyanazt) minden pécsi projekthez szállítják.
+- Adjuk meg azon szállítók nevét és telephelyét, akik valamelyik kék cikket 
+  (nem feltétlenül ugyanazt) minden projekthez szállítják.
+- Adjuk meg azon szállítók nevét, akik minden cikket szállítanak minden projekthez.
+- Adjuk meg azon szállítók nevét, akik minden kek cikket szállítanak minden projekthez.

@@ -1,0 +1,31 @@
+/*
+1. CTAS (CRERATE TABLE AS?) utasítással copyzzuk le DOLGOZO táblát új néven (D_UJ)
+2. ALTER T-lel új oszlopot hozzunk létre a másolatban (SORSZAM)
+3. kurzoron át update-eljük sorszámot akt sorszámmal dolgozó neve szerint rendezve (DNEV?P?)
+*/
+
+CREATE TABLE DOLGOZO_UJ as select * from DOLGOZO;
+
+ALTER TABLE DOLGOZO_UJ
+ADD (SORSZAM NUMBER);
+
+SET SERVEROUTPUT ON
+DECLARE
+    L_DB DOLGOZO_UJ.SORSZAM%TYPE := 1;
+    CURSOR C_SORSZAM IS
+        SELECT *
+        FROM DOLGOZO_UJ
+        ORDER BY DNEV ;
+BEGIN
+FOR SOR IN C_SORSZAM
+LOOP
+    UPDATE DOLGOZO_UJ
+    SET SORSZAM = L_DB
+    WHERE CURRENT OF C_SROSZAM; --WHERE DOLGOZO_UJ.DKOD = SOR.DKOD;
+    --DBMS OUTPUT.PUT_LINE(SOR.DNEV);
+    L_DB := L_DB + 1;
+END LOOP;
+COMMIT;
+EXCEPTION WHEN OTHERS
+THEN ROLLBACK;
+END;

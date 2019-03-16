@@ -1,0 +1,97 @@
+ELTE Oracle adatbázisok elérése
+SQL Developer használata
+Egy táblára vonatkozó lekérdezések az SQL-ben 
+ - mintapéldák az SFWO záradék használatára, NULL érték, kifejezések
+   (cr_dept_emp.sql, SQL_alap1.pdf, SQL_alap2.pdf)
+ 
+Gyakorló táblák létrehozása (cr_szeret.txt, cr_dolgozo.txt, cr_csatahajok)
+ 
+   1. Milyen azonosítójú osztályon dolgoznak a dolgozók? (kiterjesztett vetítés)
+   2. Adjuk meg a dolgozók között elõforduló foglalkozások neveit (vetítés, 
+      az eredmény halmaz legyen, vagyis minden foglalkozást csak egyszer írjuk ki!)
+   3. Kik azok a dolgozók, akiknek a fizetése > 2800? (kiválasztás, elemi feltétel)
+   4. Kik azok a dolgozók, akiknek a fizetése 2000 és 4500 között van?
+      (1.mo: kiválasztás, összetett feltétel; 2.mo: where-ben: intervallum)
+   5. Kik azok a dolgozók, akik a 10-es vagy a 20-as osztályon dolgoznak?
+      (1.mo: kiválasztás, összetett feltétel; 2.mo: where-ben: in értékek)
+   6. Adjuk meg azon dolgozókat, akik nevének második betûje 'A' (where: like)
+   7. Kik azok a dolgozók, akiknek a jutaléka ismert? (vagyis nem NULL)
+
+SZERET tábla
+
+NEV         GYUMOLCS
+--------------------
+Malacka     alma
+Micimackó   alma
+Malacka     körte
+Kanga       alma
+Tigris      alma
+Malacka     dinnye
+Micimackó   körte
+Tigris      körte
+
+1.  Melyek azok a gyümölcsök, amelyeket Micimackó szeret?
+2.  Melyek azok a gyümölcsök, amelyeket Micimackó nem szeret? (de valaki más igen)
+3.  Kik szeretik az almát?
+4.  Kik nem szeretik a körtét? (de valami mást igen)
+5.  Kik szeretik vagy az almát vagy a körtét?
+6.  Kik szeretik az almát is és a körtét is?
+7.  Kik azok, akik szeretik az almát, de nem szeretik a körtét?
+8.  Kik szeretnek legalább kétféle gyümölcsöt?
+9.  Kik szeretnek legalább háromféle gyümölcsöt?
+10. Kik szeretnek legfeljebb kétféle gyümölcsöt?
+11. Kik szeretnek pontosan kétféle gyümölcsöt?
+12. Kik szeretnek minden gyümölcsöt?
+13. Kik azok, akik legalább azokat a gyümölcsöket szeretik, mint Micimackó?
+14. Kik azok, akik legfeljebb azokat a gyümölcsöket szeretik, mint Micimackó?
+15. Kik azok, akik pontosan azokat a gyümölcsöket szeretik, mint Micimackó?
+16. Melyek azok a (név,név) párok, akiknek legalább egy gyümölcsben eltér 
+    az ízlésük, azaz az  egyik szereti ezt a gyümölcsöt, a másik meg nem?
+17. Melyek azok a (név,név) párok, akiknek pontosan ugyanaz az ízlésük, azaz 
+    pontosan  ugyanazokat a gyümölcsöket szeretik? 
+18. SZERET(NEV, GYUMOLCS) tábla helyett EVETT(NEV, KG) legyen a relációséma 
+    és azt tartalmazza, hogy ki mennyi gyümölcsöt evett összesen. 
+    Ki ette a legtöbb gyümölcsöt? 
+
+Fejezzük ki a természetes összekapcsolást a többi alapmûvelet segítségével. 
+(A Descartes szorzatot tekintsük alapmûveletnek.)
+
+Fejezzük ki a Descartes szorzatot a többi alapmûvelet segítségével. 
+(A természetes összekapcsolást tekintsük alapmûveletnek.)
+
+Feladat: Ez a példa, a II. világháború csatahajóival(bb) és cirkálóival (bc) foglalkozik, és a következõ sémájú relációkat tartalmazza:
+
+    Hajóosztályok(osztály, típus, ország, ágyúkSzáma, kaliber, vízkiszorítás)
+    Hajók(hajónév, osztály, felavatva)
+    Csaták(csatanév, dátum)
+    Kimenetelek(hajónév, csatanév, eredmény)
+
+1.    Melyek azok a hajók, amelyeket 1921 elõtt avattak fel?
+
+2.    Adjuk meg azokat a hajóosztályokat a gyártó országok nevével együtt, amelyeknek az ágyúi legalább 16-os kaliberûek.
+
+3.    Adjuk meg a Denmark Strait-csatában elsüllyedt hajók nevét.
+
+4.    Adjuk meg az adatbázisban szereplõ összes hadihajó nevét. (Ne feledjük, hogy a Hajók relációban nem feltétlenül szerepel az összes hajó!)
+
+5.    Melyek azok az országok, amelyeknek csatahajóik is és cirkálóhajóik is voltak?
+
+6.    Melyik hajó melyik országban készült?
+
+7.    Adjuk meg a Guadalcanal csatában részt vett hajók nevét, vízkiszorítását és ágyúi­nak a számát.
+
+8.    Soroljuk fel a biztosan 1943 elõtt épült hajókat!
+
+9.    Melyik csatában volt mindenféle eredmény?
+
+10.   Melyik években avattak legalább 3 hajót?
+
+11.    Az 1921-es washingtoni egyezmény betiltotta a 35 000 tonnánál súlyosabb hajókat. Adjuk meg azokat a hajókat, amelyek megszegték az egyezményt.
+
+12.    Adjuk meg azokat a hajókat, amelyek "újjáéledtek", azaz egyszer már megsérültek egy csatában, de egy késõbbi csatában újra harcoltak.
+
+13.    Adjuk meg azokat az osztályokat, amelyekbe csak egyetlenegy hajó tartozik.
+
+14.    Évenkénti bontásban hány hajót avattak?
+
+15.    Mely hajóosztályból mikor avatták az utolsó hajót?

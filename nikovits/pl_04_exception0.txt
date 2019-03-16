@@ -1,0 +1,38 @@
+set serveroutput on
+declare
+ hiba exception;
+ pragma exception_init(hiba, -20000);
+begin
+ raise_application_error('-20001', 'hiba2');
+ raise hiba;
+ declare
+  v number := 1/0;  -- ezt a hibát csak a külsõ blokkban kezelhetjük
+ begin
+  null;
+ exception when others then dbms_output.put_line(sqlcode);
+ end;
+exception when others then dbms_output.put_line(sqlcode||'~'||sqlerrm);
+end;
+/
+
+
+/* Ha alprogramban dobunk hibát a raise_application_error procedúrával, azt is 
+   le tudjuk kezelni magában az alprogramban.
+*/
+
+set serveroutput on
+declare
+ v1 number :=0;
+ function f1 return number is
+  hiba1 exception;
+ begin
+  --raise hiba1;
+  raise_application_error('-20000', 'hiba');
+  return 10;
+ exception when others then return 20;
+ end;
+begin
+ v1 := f1; dbms_output.put_line(v1);
+exception when others then dbms_output.put_line(sqlcode||'~'||sqlerrm);
+end;
+/

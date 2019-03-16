@@ -1,0 +1,58 @@
+2017.03.01.
+3. Adatb1 GY
+
+relációs algebra
+----------------
+
+r metszet s = r - ( r - s) = r + s - (r - s) - (s - r)
+		(kongruens)
+
+
+alapműveletek: unió, különbség, x, ró (átnevezés), szigma (szelekció), produktum
+származtatott műveletek: metszet, |X|, teta (join), hányados (osztás)
+
+
+szelekcióban mi a megengedett...
+átnevezés: ró_S(N, V) (Szeret(NEV, GYUMOLCS))
+// S(N, V) alsó indexben
+direktszorzat natural join
+
+ppt43: kik szeretnek minden olyan gyümölcsöt, amit Micimackó szeret
+összes Micimackós megoldása a diákban
+
+A_i <= A_j
+A_i != c_i
+A_i + A_j > 0
+A_i > -A_j // - már nem volt megengedve
+C = 3 * A_i + 2A_i > 12
+
+gamma, szigma
+delta
+tau (order by / rendezés)
+
+kiterjesztett relációs algebra
+
+
+
+
+1.
+DOLGOZO(DKOD, DNEV, ...)
+ró_D(DOLGOZO); 
+// ez után már d.dkod-ot írhatok
+
+SELECT selectlista
+FROM fromlista
+WHERE wherelista; (where = szigma)
+
+belülről kifelé építkezünk (levél -> gyökér)
+
+produktum_DKOD,DNEV (szigma_FIZETES > 2800(DOLGOZO))
+
+fromlista -> levélszintű reláció
+slectlista = produktum
+
+prduktum_DKOD, DNEV
+		|
+szigma_fizetes>2800
+		|
+		D

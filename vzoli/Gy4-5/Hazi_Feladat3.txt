@@ -1,0 +1,15 @@
+A lekérdezésekhez használt táblák:
+DOLGOZO       (dkod, dnev, foglalkozas, fonoke, belepes, fizetes, jutalek, oazon)
+OSZTALY       (oazon, onev, telephely)
+
+Lekérdezések  (Kiterjesztett rel. alg. + SQL)
+------------
+- Adjuk meg osztályonként az átlagfizetést (ONEV, ATL_FIZ).
+- Adjuk meg osztályonként a telephelyet és az összjövedelmet (jövedelem=fizetes+jutalek)!
+  (OAZON, TELEPHELY, OSSZ_JOVEDELEM).
+- Adjuk meg osztályonként a legnagyobb fizetésu dolgozó(ka)t, és a fizetést (onev, dnev, fizetes).
+
+Kérem emailben vasárnap (2017.03.13) éjfélig a megoldásokat elküldeni:
+vzoli@inf.elte.hu
+
+

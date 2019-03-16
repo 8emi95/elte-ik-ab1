@@ -1,0 +1,4 @@
+2017.05.03.
+10. Adatb1 GY
+
+ZH: utolsó hét, kétharmada pl/sql egyharmad logikai->fizikai adatmodell DML?

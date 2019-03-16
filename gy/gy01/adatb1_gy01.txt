@@ -1,0 +1,13 @@
+http://people.inf.elte.hu/vzoli/Adatbazisok_1/Gy1/ab1_kovetelmeny.txt
+4 hiányzás
+% zh-kra
+
+szorgalmi feladat: email/kövi gyak, +pont (%pont)
+
+connection name: //akármi
+name: T6ESML
+pwd: t6esml
+
+HOST = aramis.inf.elte.hu
+PORT = 1521
+SERVICE_NAME = eszakigrid97

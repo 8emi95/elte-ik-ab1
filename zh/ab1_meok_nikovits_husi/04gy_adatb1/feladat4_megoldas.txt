@@ -1,0 +1,193 @@
+A korábbi táblák:
+-------------------------------------
+NIKOVITS.DOLGOZO       (dkod, dnev, foglalkozas, fonoke, belepes, fizetes, jutalek, oazon)
+NIKOVITS.OSZTALY       (oazon, onev, telephely)
+NIKOVITS.Fiz_kategoria (kategoria, also, felso)
+-------------------------------------
+Lekérdezések  (Kiterjesztett rel. alg. + SQL)
+------------
+
+-- Mekkora a maximális fizetés a dolgozók között?
+SELECT max(fizetes) FROM dolgozo;
+
+-- Mennyi a dolgozók összfizetése?
+SELECT sum(fizetes) FROM dolgozo;
+
+-- Mennyi a 20-as osztályon az összfizetes és az átlagfizetés? (Atlag, Össz)
+SELECT sum(fizetes), avg(fizetes) FROM dolgozo WHERE oazon=20;
+
+-- Adjuk meg, hogy hány különbözõ foglalkozás fordul elõ a dolgozók között. 
+SELECT count(DISTINCT foglalkozas) FROM dolgozo;
+
+-- Hány olyan dolgozó van, akinek a fizetése > 2000? 
+SELECT count(*) FROM dolgozo WHERE fizetes > 2000;
+
+-- Adjuk meg osztályonként az átlagfizetést (oazon, atl_fiz).
+SELECT oazon, round(avg(fizetes)) FROM dolgozo GROUP BY oazon;
+
+-- Adjuk meg osztályonként a telephelyet és az átlagfizetést (oazon, telephely, atl_fiz).
+SELECT o.oazon, telephely, round(avg(fizetes)) 
+FROM dolgozo d, osztaly o
+WHERE d.oazon=o.oazon 
+GROUP BY o.oazon, telephely;
+-- más szintaxissal:
+SELECT oazon, telephely, round(avg(fizetes)) 
+FROM dolgozo d NATURAL JOIN osztaly o
+GROUP BY oazon, telephely;
+
+-- Adjuk meg, hogy az egyes osztályokon hány ember dolgozik.
+SELECT oazon, count(dkod) FROM dolgozo GROUP BY oazon;
+
+-- Adjuk meg azokra az osztályokra az átlagfizetést, ahol ez nagyobb mint 2000.
+SELECT oazon, avg(fizetes) FROM dolgozo GROUP BY oazon HAVING avg(fizetes) > 2000;
+
+-- Adjuk meg az átlagfizetést azokon az osztályokon, ahol legalább 4-en dolgoznak (oazon, avg_fiz)
+SELECT oazon, avg(fizetes) FROM dolgozo GROUP BY oazon HAVING count(dkod) >= 4;
+
+-- Adjuk meg az átlagfizetést és telephelyet azokon az osztályokon, ahol legalább 4-en dolgoznak.
+SELECT o.oazon, telephely, avg(fizetes) FROM dolgozo d, osztaly o
+WHERE d.oazon=o.oazon 
+GROUP BY o.oazon, telephely HAVING count(dkod) >= 4;
+
+-- Adjuk meg azon osztályok nevét és telephelyét, ahol az átlagfizetés nagyobb mint 2000. (onev, telephely)
+SELECT onev, telephely FROM dolgozo d, osztaly o
+WHERE d.oazon=o.oazon 
+GROUP BY onev, telephely HAVING avg(fizetes) >= 2000;
+
+-- Adjuk meg azokat a fizetési kategóriákat, amelybe pontosan 3 dolgozó fizetése esik.
+SELECT kategoria FROM dolgozo, fiz_kategoria
+WHERE fizetes BETWEEN also AND felso
+GROUP BY kategoria HAVING count(*) = 3;
+-- más szintaxissal
+SELECT kategoria FROM dolgozo JOIN fiz_kategoria ON (fizetes BETWEEN also AND felso)
+GROUP BY kategoria HAVING count(*) = 3;
+
+-- Adjuk meg azokat a fizetési kategóriákat, amelyekbe esõ dolgozók mindannyian ugyanazon az osztályon dolgoznak.
+SELECT kategoria FROM dolgozo, fiz_kategoria
+WHERE fizetes BETWEEN also AND felso
+GROUP BY kategoria HAVING count(distinct oazon) = 1;
+
+-- Adjuk meg azon osztályok nevét és telephelyét, amelyeknek van 1-es fizetési kategóriájú dolgozója.
+SELECT DISTINCT onev, telephely FROM dolgozo d, osztaly o, fiz_kategoria f
+WHERE o.oazon=d.oazon AND fizetes BETWEEN also AND felso AND kategoria = 1;
+
+-- Adjuk meg azon osztályok nevét és telephelyét, amelyeknek legalább 2 fõ 1-es fiz. kategóriájú dolgozója van.
+SELECT DISTINCT onev, telephely FROM dolgozo d, osztaly o, fiz_kategoria f
+WHERE o.oazon=d.oazon AND fizetes BETWEEN also AND felso AND kategoria = 1
+GROUP BY onev, telephely HAVING count(distinct dkod) > 1;
+
+-- Készítsünk listát a páros és páratlan azonosítójú (dkod) dolgozók számáról. (paritás, szám)
+SELECT decode(mod(dkod, 2), 0, 'páros', 1, 'páratlan') paritas, count(dkod) szam 
+FROM dolgozo GROUP BY mod(dkod, 2);
+
+-- Listázzuk ki foglalkozásonként a dolgozók számát, átlagfizetését (kerekítve) numerikusan és grafikusan is.
+-- 200-anként jelenítsünk meg egy '#'-ot. (foglalkozás, szám, átlag, grafika)
+SELECT foglalkozas, count(dkod), round(avg(fizetes)),
+      rpad('#', round(avg(fizetes)/200), '#') 
+FROM dolgozo GROUP BY foglalkozas;
+
+
+SZERET tábla
+
+NEV         GYUMOLCS
+--------------------
+Malacka     alma
+Micimackó   alma
+Malacka     körte
+Kanga       alma
+Tigris      alma
+Malacka     dinnye
+Micimackó   körte
+Tigris      körte
+
+1.  Melyek azok a gyümölcsök, amelyeket Micimackó szeret?
+2.  Melyek azok a gyümölcsök, amelyeket Micimackó nem szeret? (de valaki más igen)
+3.  Kik szeretik az almát?
+4.  Kik nem szeretik a körtét? (de valami mást igen)
+5.  Kik szeretik vagy az almát vagy a körtét?
+6.  Kik szeretik az almát is és a körtét is?
+7.  Kik azok, akik szeretik az almát, de nem szeretik a körtét?
+8.  Kik szeretnek legalább kétféle gyümölcsöt?
+9.  Kik szeretnek legalább háromféle gyümölcsöt?
+10. Kik szeretnek legfeljebb kétféle gyümölcsöt?
+11. Kik szeretnek pontosan kétféle gyümölcsöt?
+----------- eddig volt korábban, lásd feladat2.txt
+12. Kik szeretnek minden gyümölcsöt?
+13. Kik azok, akik legalább azokat a gyümölcsöket szeretik, mint Micimackó?
+14. Kik azok, akik legfeljebb azokat a gyümölcsöket szeretik, mint Micimackó?
+15. Kik azok, akik pontosan azokat a gyümölcsöket szeretik, mint Micimackó?
+16. Melyek azok a (név,név) párok, akiknek legalább egy gyümölcsben eltér 
+    az ízlésük, azaz az  egyik szereti ezt a gyümölcsöt, a másik meg nem?
+17. Melyek azok a (név,név) párok, akiknek pontosan ugyanaz az ízlésük, azaz 
+    pontosan  ugyanazokat a gyümölcsöket szeretik? 
+18. SZERET(NEV, GYUMOLCS) tábla helyett EVETT(NEV, KG) legyen a relációséma 
+    és azt tartalmazza, hogy ki mennyi gyümölcsöt evett összesen. 
+    Ki ette a legtöbb gyümölcsöt? 
+
+
+12. Kik szeretnek minden gyümölcsöt?
+--  összes név minusz NemSzeret(Nev,Gyumolcs) nevei
+
+SELECT nev FROM szeret 
+ MINUS
+SELECT DISTINCT nev FROM 
+(SELECT DISTINCT sz1.nev, sz2.gyumolcs FROM szeret sz1, szeret sz2
+  MINUS
+ SELECT nev, gyumolcs FROM szeret) NemSz;
+
+13. Kik azok, akik legalább azokat a gyümölcsöket szeretik, mint Micimackó?
+
+SELECT nev FROM szeret 
+ MINUS
+SELECT DISTINCT nev FROM 
+(SELECT DISTINCT sz1.nev, sz2.gyumolcs FROM szeret sz1, szeret sz2 where sz2.nev='Micimackó'
+  MINUS
+ SELECT nev, gyumolcs FROM szeret);
+
+14. Kik azok, akik legfeljebb azokat a gyümölcsöket szeretik, mint Micimackó?
+--  összes név minusz akik szeretnek olyat, amit Micimackó nem szeret
+
+SELECT DISTINCT nev FROM szeret
+ MINUS
+SELECT DISTINCT sz.nev FROM szeret sz,
+ (SELECT DISTINCT gyumolcs FROM szeret MINUS SELECT gyumolcs FROM szeret WHERE nev='Micimackó') MM_NSZ
+WHERE sz.gyumolcs = mm_nsz.gyumolcs;
+
+15. Kik azok, akik pontosan azokat a gyümölcsöket szeretik, mint Micimackó?
+--  elõzõ kettõ metszete
+
+(SELECT nev FROM szeret 
+  MINUS
+ SELECT DISTINCT nev FROM 
+ (SELECT DISTINCT sz1.nev, sz2.gyumolcs FROM szeret sz1, szeret sz2 WHERE sz2.nev='Micimackó'
+   MINUS
+  SELECT nev, gyumolcs FROM szeret))
+ INTERSECT
+(SELECT DISTINCT nev FROM szeret
+  MINUS
+ SELECT DISTINCT sz.nev FROM szeret sz,
+  (SELECT DISTINCT gyumolcs FROM szeret MINUS SELECT gyumolcs FROM szeret WHERE nev='Micimackó') MM_NSZ
+ WHERE sz.gyumolcs = mm_nsz.gyumolcs);
+
+16. Melyek azok a (név,név) párok, akiknek legalább egy gyümölcsben eltér 
+    az ízlésük, azaz az  egyik szereti ezt a gyümölcsöt, a másik meg nem?
+--  Szeret és NemSzeret direktszorzata, ebben azonos gyumolcs keresése
+!!! Vigyázat, lehetnek párok, akik kétszer is szerepelnek -> A,B és B,A 
+(van, amit A szeret, B nem és lehet olyan, amit B szeret, A nem)
+
+SELECT DISTINCT sz.nev, nemSz.nev FROM szeret Sz,
+ (SELECT DISTINCT sz1.nev, sz2.gyumolcs FROM szeret sz1, szeret sz2
+   MINUS
+  SELECT nev, gyumolcs FROM szeret) nemSz
+WHERE sz.gyumolcs = nemSz.gyumolcs;
+
+17. Melyek azok a (név,név) párok, akiknek pontosan ugyanaz az ízlésük, azaz 
+    pontosan  ugyanazokat a gyümölcsöket szeretik? 
+-- Az összes (név, név) párból kivonjuk az elõzõt. Az elõzõt úgy állítjuk elõ, hogy A,B és B,A is
+-- benne legyen. (Mindkét irányú párok halmazát létrehozzuk, majd a kettõ unióját képezzük.)
+
+
+18. SZERET(NEV, GYUMOLCS) tábla helyett EVETT(NEV, KG) legyen a relációséma 
+    és azt tartalmazza, hogy ki mennyi gyümölcsöt evett összesen. 
+    Ki ette a legtöbb gyümölcsöt? 
+-- összes névbõl kivonjuk azokat, akiknél van nagyobb étvágyú

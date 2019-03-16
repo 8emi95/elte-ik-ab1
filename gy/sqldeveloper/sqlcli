@@ -1,0 +1,22 @@
+#!/bin/bash
+CP=jdbc/lib/ojdbc6.jar
+CP=${CP}:jlib/orai18n-collation.jar
+CP=${CP}:jlib/orai18n-mapping.jar
+CP=${CP}:jlib/orai18n-servlet.jar
+CP=${CP}:jlib/orai18n-utility.jar
+CP=${CP}:jlib/orai18n.jar
+CP=${CP}:sqldeveloper/extensions/oracle.sqldeveloper.jar
+CP=${CP}:sqldeveloper/lib/oracle.sqldeveloper.utils.jar
+CP=${CP}:sqldeveloper/lib/oracle.sqldeveloper.utils-nodeps.jar
+CP=${CP}:sqldeveloper/lib/itextpdf-5.1.2.jar
+CP=${CP}:sqldeveloper/lib/poi-3.7-20101029.jar
+CP=${CP}:modules/oracle.javatools_11.1.1/javatools-nodeps.jar
+CP=${CP}:sqldeveloper/lib/jline-0.9.9.jar
+CP=${CP}:ide/lib/javatools.jar
+CP=${CP}:ide/extensions/oracle.ide.jar
+CP=${CP}:jlib/jdev-cm.jar
+CP=${CP}:ide/lib/dbapi.jar
+
+#java -cp ${CP} oracle.dbtools.raptor.newscriptrunner.commands.SQLCli $*
+
+java -cp ${CP} oracle.dbtools.raptor.scriptrunner.utils.SqlCli $*

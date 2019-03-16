@@ -1,0 +1,50 @@
+Tisztelt Hallgatók!
+
+Jelen pillanatban az ELTE-n két Oracle adatbázis érhetõ el a gyakorlatok feladatainak
+megoldására. A nevük ARAMIS (Oracle 11.2) illetve ULLMAN (Oracle 11.2).
+
+Oracle azonosító: minden hallgatónak, aki felvette a gyakorlatot az adatbázisban
+létrehozásra került az azonosítója (a régi azonosítók megmaradtak). 
+Az adatbázis azonosító megegyezik a hallgatók NEPTUN kódjával (a kezdeti jelszót a gyakorlaton kapják meg).
+A kezdeti jelszó csak egy rövid ideig érvényes, és a késõbbiekben is bizonyos idõ után lejár. 
+
+A lejárati idõ lekérdezése SQL-ben:
+SELECT username, account_status, expiry_date FROM dba_users;
+
+Az adatbázisok elérhetõk bármely PC-rõl egy megfelelõ kliens program segítségével.
+Kérünk minden hallgatót, hogy az adatbázis jelszavát változtassa meg!  
+
+Az alábbi SQL utasítás bármely kliens programból kiadható: 
+ALTER USER <usernév> IDENTIFIED BY <új_jelszó>;  
+ahol a <usernév> helyére a NEPTUN kód kerül.
+
+Ha nem tud bejelentkezni az adatbázisba, mert pl. elfelejtette 
+a jelszavát vagy zárolódott az azonosítója, akkor írjon emailt az alábbi címre:
+   nikovits@inf.elte.hu
+
+Az adatbázis elérése (akár egyetemen kivülrõl is) megfelelõ
+kliens programokkal (pl. SQLPLUS, TOAD, Designer stb.) történhet.
+Ehhez esetleg a kliens gépen levõ tnsnames.ora állományba be kell írni a kapcsolódási
+információkat, vagy a beálltásokat más módon meg kell adni 
+(természetesen a megfelelõ kliens program telepítése után). 
+
+A jelenlegi beállítások:
+ARAMIS:
+		HOST = aramis.inf.elte.hu
+		PORT = 1521
+		SERVICE_NAME = eszakigrid97
+
+ULLMAN
+		host: ullman.inf.elte.hu
+		port: 1521
+		service_name: ullman
+		
+Az Oracle cég otn.oracle.com oldaláról (regisztráció után) letölthetõ egy SqlDeveloper nevû program, 
+ami kényelmesebb felületet biztosít az SQLPlus-nál. Ráadásul nem igényel semmilyen telepítést,
+csak ki kell csomagolni és lehet futtatni. 
+A PC laborok gépein elérhetõ általában a C:\[Oracle\]sqldeveloper könyvtárból. 
+Természetesen ennek a programnak is meg kell adni az adatbázis eléréséhez szükséges paramétereket, 
+amirõl az elõzõ szakaszban szó volt. 
+
+Vincellér Zoltán
+vzoli@inf.elte.hu

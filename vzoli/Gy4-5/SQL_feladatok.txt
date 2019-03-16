@@ -1,0 +1,118 @@
+A lekérdezésekhez használt táblák:
+
+VZOLI.DOLGOZO    (dkod, dnev, foglalkozas, fonoke, belepes, fizetes, jutalek, oazon)
+VZOLI.OSZTALY    (oazon, onev, telephely)
+VZOLI.CIKK       (ckod, cnev, szin, suly)
+VZOLI.PROJEKT    (pkod, pnev, helyszin)
+VZOLI.SZALLITO   (szkod, sznev, statusz, telephely)
+VZOLI.SZALLIT    (szkod, ckod, pkod, mennyiseg, datum) 
+
+
+Kiválasztás
+
+- Kik azok a dolgozók, akiknek a fizetése > 2800?
+
+- Kik azok a dolgozók, akik a 10-es vagy a 20-as osztályon dolgoznak?
+
+- Kik azok a dolgozók, akik 1982.01.01 után léptek be a céghez?
+-- Aktuális dátumformátumot lásd -> SYSDATE fv.
+
+- Kik azok a dolgozók, akiknek a jutaléka ismert? (vagyis nem NULL)
+
+
+Direkt szorzat
+
+- Kik azok a dolgozók, akiknek a fõnöke KING?
+
+- Adjuk meg azokat a (név, fõnök) párokat, ahol a két ember neve ugyanannyi betûbõl áll. 
+
+- Kik azok a dolgozók, akik osztályának telephelye DALLAS vagy CHICAGO?
+
+
+Különbség
+
+- Kik azok a dolgozók, akik osztályának telephelye nem DALLAS és nem CHICAGO?
+
+
+Vetítés
+
+- Adjuk meg a dolgozók között elõforduló foglalkozások neveit.
+
+
+Unió
+
+- Adjuk meg azoknak a nevét, akiknek a fizetése > 2000 vagy a CHICAGO-i osztályon dolgoznak.
+
+
+Összesítõ (Aggregátor) függvények
+
+- Mekkora a minimális/maximális fizetés a dolgozók között?
+
+- Kinek a legkisebb/legnagyobb a fizetése?
+
+
+Beépített függvények
+
+- Adjuk meg azon dolgozókat, akik nevének második betûje 'A'.
+
+- Adjuk meg azon dolgozókat, akik nevében van legalább két 'L' betû. 
+
+- Adjuk meg a dolgozók fizetéseinek négyzetgyökét és 3-mal vett maradékát. 
+
+- Adjuk meg, hogy hány napja dolgozik a cégnél ADAMS és milyen hónapban lépett be.
+
+1.6 példa (Kende Mária-Nagy István: Oracle példatár - SQL, PL/SQL. Panem kiadó.)
+Listázzuk ki a dolgozók nevét és fizetését, valamint jelenítsük meg a fizetést grafikusan
+úgy, hogy a fizetést 1000 Ft-ra kerekítve, minden 1000 Ft-ot egy '#' jel jelöl.
+
+1.8 példa
+Listázzuk ki azoknak a dolgozóknak a nevét, fizetését, jutalékát, és a jutalék/fizetés
+arányát, akiknek a foglalkozása eladó (salesman). Az arányt két tizedesen jelenítsük meg.
+
+- Adjuk meg azon dolgozók nevét, fizetését, jutalékát, adósávját és fizetendõ adóját, akik
+  nevében van S-betû. Adósávok 1000 alatt 0%, 1000 és 2000 között 20%, 2000 és 3000 között
+  30%, 3000 fölött 35%. Az adót a teljes jvedelemre (sal+comm) a megadott kulccsal kell fizetni.
+
+2.17 feladat
+Készítsünk listát a páros és páratlan azonosítójú dolgozók számáról.
+
+
+-----------------
+
+- Adjuk meg azon cikkek kódját és nevét, amelyeket valamelyik pécsi szállító szállít.
+
+- Adjuk meg azon cikkek kódját és nevét, amelyeket egyik pécsi szállító sem szállít.
+
+- Adjuk meg azon szállítók nevét, akiknek a státusza 10-nél nagyobb és 
+  budapesti projektbe szállítanak szék nevû cikket.
+
+- Adjuk meg azon projektek kódját, amelyekhez szállítanak kék cikket.
+
+- Adjuk meg azon projektek kódját és nevét, amelyekhez szállítanak kék cikket.
+
+- Adjuk meg azon projektek kódját és nevét, amelyekhez nem szállítanak kék cikket.
+
+- Adjuk meg azon cikkek kódját, amelyeket szállítanak valahova.
+
+- Adjuk meg azon cikkek kódját, amelyeket nem szállítanak sehova.
+
+- Adjuk meg azon cikkek kódját és nevét, amelyeket sehova nem szállítanak.
+
+- Adjuk meg azon kék cikkek kódját, amelyeket szállítanak valahova.
+
+- Adjuk meg azon piros színû cikkek kódját, amelyeket sehova nem szállítanak.
+
+- Adjuk meg azon cikkek nevét, amelyeket minden projekthez szállítanak.
+
+- Adjuk meg azon cikkek nevét, amelyeket valamelyik projekthez nem szállítanak.
+
+- Adjuk meg azon zöld színû cikkek nevét, amelyeket minden projekthez szállítanak.
+
+- Adjuk meg azon zöld színû cikkek nevét, amelyet valamelyik projekthez nem szállítanak.
+
+- Adjuk meg azon projektek nevét, amelyekhez minden zöld színû cikket szállítanak.
+
+- Adjuk meg azon szállítók nevét, akik minden cikket szállítanak minden projekthez.
+
+- Adjuk meg azon szállítók nevét, akik minden kek cikket szállítanak minden projekthez.
+

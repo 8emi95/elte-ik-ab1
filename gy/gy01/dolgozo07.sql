@@ -1,0 +1,4 @@
+SELECT DKOD, DNEV
+FROM DOLGOZO
+WHERE JUTALEK IS NOT NULL
+ORDER BY 2; -- így ábécé-sorrendben van

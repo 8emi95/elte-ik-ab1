@@ -1,0 +1,14 @@
+INSERT INTO TERMEK VALUES (1, 'Félbarna','kenyér','kg',1,120);
+INSERT INTO TERMEK VALUES (2, 'Fehér','kenyér','kg',1,140);
+INSERT INTO TERMEK VALUES (3, 'Tej 1.5%','tej','l',1,160);
+INSERT INTO TERMEK VALUES (4, 'Tej 2.8%','tej','l',0.5,98);
+INSERT INTO TERMEK VALUES (5, 'Trappista','sajt','kg',1.5,1780);
+INSERT INTO TERMEK VALUES (6, 'Ementáli','sajt','kg',1,120);
+INSERT INTO TERMEK VALUES (7, 'Tojás M','tojás','db',10,220);
+INSERT INTO TERMEK VALUES (8, 'Tojás S','tojás','db',10,200);
+INSERT INTO TERMEK VALUES (9, 'Tojás M','tojás','db',30,610);
+INSERT INTO TERMEK VALUES (10, 'Sprite','üdítõ','l',1,170);
+INSERT INTO TERMEK VALUES (11, 'Sprite','üdítõ','l',2,250);
+INSERT INTO TERMEK VALUES (12, 'Pepsi Cola','üdítõ','l',0.5,110);
+INSERT INTO TERMEK VALUES (13, 'Pepsi Cola','üdítõ','l',2.5,300);
+INSERT INTO TERMEK VALUES (14, 'Próba','kenyér','nesze',1,100);

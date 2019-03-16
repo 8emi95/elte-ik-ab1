@@ -1,0 +1,10 @@
+2017.05.10.
+11. Adatb1 GY
+
+ZH gyakorlás: Examples mappa
+papíros: adatmodell? ddl-scriptben visszaadni
+
+szorgalmi: járatok tábla kibővítés, zh előttig pluszpontért
+
+GY jegy:
+1 szar 1 közepes -> 1.t nem kell, 2es megajánlott

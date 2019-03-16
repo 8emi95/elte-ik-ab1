@@ -1,0 +1,33 @@
+-- munkakörönként min max avg fizetes
+
+SELECT FOGLALKOZAS, ROUND(AVG(FIZETES)), MIN(FIZETES), MAX(FIZETES) -- round(x, -3)
+FROM DOLGOZO
+GROUP BY FOGLALKOZAS
+ORDER BY 2 DESC;
+
+/*
+-- osztályazonosítónként min max avg fizetes
+
+SELECT OAZON, ROUND(AVG(FIZETES)), MIN(FIZETES), MAX(FIZETES) -- round(x, -3)
+FROM DOLGOZO
+GROUP BY OAZON
+ORDER BY 2 DESC;
+*/
+
+/*
+-- 0-t ír null helyett
+
+SELECT NVL(OAZON, 0), ROUND(AVG(FIZETES)), MIN(FIZETES), MAX(FIZETES) -- round(x, -3)
+FROM DOLGOZO
+GROUP BY OAZON
+ORDER BY 2 DESC;
+*/
+
+/*
+-- jövedelemre
+
+SELECT NVL(OAZON, 0), ROUND(AVG(FIZETES + NVL(JUTALEK, 0)))
+FROM DOLGOZO
+GROUP BY OAZON
+ORDER BY 2 DESC;
+*/

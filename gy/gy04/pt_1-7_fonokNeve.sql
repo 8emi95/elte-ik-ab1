@@ -1,0 +1,6 @@
+-- pt 1.7 fõnök neve legyen
+
+SELECT D1.DNEV "Fõnök azonosítója", D2.DNEV "Dolgozó neve"
+FROM DOLGOZO D1, DOLGOZO D2
+WHERE D1.DKOD = D2.FONOKE AND D2.JUTALEK IS NOT NULL
+ORDER BY 1,2;

@@ -1,0 +1,120 @@
+1. Listázza azon dolgozók nevét, foglalkozását, jövedelmét, akiknek jövedelme 1300 és 2500 között van (a határokat is beleértve), 
+továbbá 1981-ben vagy 1982-ben léptek be.  A  keletkezett  lista  elsõdlegesen  a  foglalkozás,
+másodlagosan  a  dolgozó  neve  szerint legyen növekvõen rendezve. 
+(Fejléc: "Név" "Foglalkozás" "Jövedelem")
+
+SELECT  DNEV "Név", 
+        FOGLALKOZAS "Foglalkozás",
+        FIZETES + NVL(JUTALEK,0) "Jövedelem"
+FROM DOLGOZO
+WHERE FIZETES + NVL(JUTALEK,0) BETWEEN 1300 AND 2600
+AND (TO_CHAR(BELEPES,'YYYY') = '1981' OR TO_CHAR(BELEPES,'YYYY') = '1982')
+ORDER BY "Foglalkozás", DNEV
+
+2. Listázza  ki  a C  és  az M  betûvel  kezdõdõ  foglalkozású  alkalmazottak  nevét 
+(nevüket  nagy betûvel  kezdve  és  kisbetûvel  folytatva),  valamint  a foglalkozásukat és a nevük  hosszát.
+Rendezze  a  listát  a foglalkozás szerint növekvõen, azon belül név szerint csökkenõen. 
+(Fejléc: "Név" "Foglalkozás" "Név hossza")
+
+SELECT  INITCAP(DNEV) "Név", 
+        INITCAP(FOGLALKOZAS) "Foglalkozás",
+        LENGTH(DNEV) "Név hossza"
+FROM DOLGOZO
+WHERE SUBSTR(FOGLALKOZAS,1,1) = ANY ('C','M')
+ORDER BY "Foglalkozás", 1 DESC
+;
+
+3. Listázza ki a dolgozók nevét, azonosítóját és származtatott oszlopként a beosztását. Egy dolgozó beosztása
+legyen ”Elnök”, ha nincs fõnöke, és 'Beosztott', ha nincs beosztottja, egyébként pedig legyen 'Kisfõnök'. 
+(Használja a CASE kifejezést!)  
+
+SELECT  DNEV "Név", 
+        DKOD "Azonosító",
+        CASE
+          WHEN DKOD IN (SELECT FONOKE FROM DOLGOZO)
+          THEN 
+            (
+             CASE 
+              WHEN FONOKE IS NULL
+              THEN 'Elnök'
+              ELSE 'Kisfõnök'
+             END 
+            )
+          ELSE 'Beosztott'
+        END "Beosztás"
+FROM DOLGOZO
+ORDER BY DNEV
+;       
+	   
+4. Listázza  fizetési  kategóriák  szerint a  dolgozók  létszámát.  
+(A  fizetési  kategóriákat vegye a FIZFOKOZAT táblából.)
+
+SELECT KATEGORIA "Kategória", COUNT(*) "Létszám"
+FROM DOLGOZO, FIZFOKOZAT
+WHERE FIZETES BETWEEN ALSO AND FELSO
+GROUP BY KATEGORIA
+order by KATEGORIA
+;
+
+5. Listázza foglalkozásonként a dolgozók létszámát és az egész értékre kerekített átlagfizetésüket 
+numerikusan és grafikusan  is. Ez utóbbit csillag  (*) karakterek  sorozataként balra  igazítva 
+jelenítse meg  olymódon,  hogy  e  sorozatban 200-onként  egy  csillag  karakter  álljon. 
+Rendezze a listát az átlagfizetések szerint csökkenõen. 
+
+SELECT FOGLALKOZAS "Foglalkozás", LPAD(COUNT(*),4,' ') "Létszám", ROUND(AVG(FIZETES)) "Átlagfizetés",
+                              RPAD(' ',ROUND(AVG(FIZETES))/200+1,'*') "Arányosan (*)"
+FROM DOLGOZO
+GROUP BY FOGLALKOZAS
+ORDER BY ROUND(AVG(FIZETES)) DESC
+;
+
+Példa összettet SQL lekérdezésre
+--------------------------------
+VZOLI.CIKK       (ckod, cnev, szin, suly)
+VZOLI.PROJEKT    (pkod, pnev, helyszin)
+VZOLI.SZALLITO   (szkod, sznev, statusz, telephely)
+VZOLI.SZALLIT    (szkod, ckod, pkod, mennyiseg, datum) 
+
+- Melyik cikket szállítják a legtöbb projekthez?
+a) megoldás: (Nézet tábla létrehozásával - VIEW)
+
+CREATE OR REPLACE VIEW cikk_proj_db
+AS 
+SELECT cikk.ckod ckod, cnev, COUNT(DISTINCT pkod) darab FROM cikk, szallit
+WHERE cikk.ckod=szallit.ckod
+GROUP BY cikk.ckod, cnev;
+
+SELECT ckod, cnev FROM cikk_proj_db
+WHERE darab = (SELECT MAX(darab) FROM cikk_proj_db);
+
+b) megoldás: (inline nézet)
+A lekérdezés úgy is megadható, hogy ne kelljen nézetet létrehozni.
+Az alábbi lekérdezésben a "nézet" csak a lekérdezés idejére jön létre.
+Ezt úgy is hívjuk, hogy INLINE nézet.
+
+SELECT ckod, cnev FROM
+  (SELECT cikk.ckod ckod, cnev, COUNT(DISTINCT pkod) darab 
+   FROM cikk, szallit
+   WHERE cikk.ckod=szallit.ckod
+   GROUP BY cikk.ckod, cnev) cikk_proj_db
+WHERE darab = (SELECT MAX(darab) FROM 
+                   (SELECT cikk.ckod ckod, cnev, COUNT(DISTINCT pkod) darab 
+                    FROM cikk, szallit
+                    WHERE cikk.ckod=szallit.ckod
+                    GROUP BY cikk.ckod, cnev) 
+               ) 
+;
+
+c) megoldás: (WITH szerkezettel)
+A fenti lekérdezésben kétszer kellett leírnunk ugyanazt a "nézetet" -> cikk_proj_db
+Ezt megspórolhatjuk az alábbi szintaxissal. Most is csak a lekérdezés idejére 
+jön létre a nézet.
+
+WITH 
+  cikk_proj_db AS (
+    SELECT cikk.ckod ckod, cnev, COUNT(DISTINCT pkod) darab 
+    FROM cikk, szallit
+    WHERE cikk.ckod=szallit.ckod
+    GROUP BY cikk.ckod, cnev)
+SELECT ckod, cnev FROM cikk_proj_db
+WHERE darab = (SELECT MAX(darab) FROM cikk_proj_db);

@@ -1,0 +1,24 @@
+1. Zh 
+Mindkét ZH részben minimálisan elérendõ a 25%! 
+I. Papíros feladatok 
+(Semmilyen segédeszköz nem használható!)
+(40 perc) 
+Lekérdezések kifejezése egyszerû relációs algebrában (lineáris jelöléssel v. kifejezésfával),  és 
+ugyanezen lekérdezések ekvivalens kifejezése SQL SELECT-tel (egyszerû lekérdezések, több táblára 
+   vonatkozó lekérdezések, alkérdések használata, összekapcsolások, outer join is,
+   valamint ismerni kell a relációs algebra és az SQL SELECT kapcsolatát, átírásokat)
+
+Kiterjesztett mûveletek a relációs algebrában (lineáris jelöléssel v. kifejezésfával), és
+ugyanezen lekérdezések ekvivalens kifejezése SQL SELECT-tel (minden záradékot ismerni kell, mint
+   például GROUP BY és HAVING), a fügvények közül csak az NVL és a fontosabb
+   aggregátorfüggvények, mint például MIN, MAX, SUM, COUNT és AVG lesznek
+   a papíros feladatokban) és fontos még az alkérdések, korrelált alkérdések ismerete.
+
+II. Gépes feladatok 
+(Csak az Oracle on-line dokumentáció használható! http://medusa.inf.elte.hu)
+(40 perc) 
+Oracle SQL SELECT feladatok: 
+Adott táblák összekapcsolása (join, külsõ join) és lekérdezése, sorfüggvények, 
+összesítések és csoportosítás (GROUP BY, HAVING), csoportfüggvények, 
+alkérdések használata WHERE és HAVING záradékban, korrelált alkérdések.
+

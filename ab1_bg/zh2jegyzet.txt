@@ -1,0 +1,49 @@
+KULCSOK:
+
+PRIMARY KEY
+UNIQUE
+REFERENCES Sörök(Név) vagy ha sémaelemként akkor FOREIGN KEY(sör) REFERENCES Sörök(név)
+
+mi történjen törléskor?
+FOREIGN KEY(sör) REFERENCES Sörök(név)
+  ON DELETE SET NULL
+  ON UPDATE CASCADE
+(alapból csak simán megtiltja a módosítást)
+
+CHECK (csak az adott mezõnév szerepelhet benne!! kivéve alkérdés)
+sör CHAR(20) CHECK (sör IN (SELECT név FROM sörök))
+
+CHECK sémaelemként (ekkor szerepelhet a tábla más mezõneve is)
+..,
+..,
+CHECK (sörözõ = 'Joe bárja' OR ár <= 5.00)
+
+Névadás megszorításnak: elér írjuk hogy CONSTRAINT MegszNév
+Megsz hozzáadása: ALTER TABLE tábla ADD CONSTRAINT MegszNév PRIMARY KEY(név)
+
+HALMAZMÛVELETEK:
+
+UNION
+INTERSECT
+EXCEPT vagy MINUS (EXCEPT ALL - multihalmaz szemantikával kivonás)
+
+ALKÉRDÉS:
+
+[NOT] EXISTS (...)
+kif [NOT] IN (...)
+kif rel.jel [ANY | ALL] (...) - skalár értékekbõl álló multihalmazt adó alkérdésekhez
+  kif = ANY(...), de = helyett lehet <, > is
+
+JOINOK:
+
+NATURAL JOIN
+JOIN tábla USING(mezõ)
+JOIN tábla ON (feltétel)
+LEFT OUTER JOIN
+RIGHT OUTER JOIN
+FULL OUTER JOIN
+CROSS JOIN (direktszorzat)
+
+
+Tranzakciók ACID tulajdonsgai:
+atomicity, consistency, isolation, durability

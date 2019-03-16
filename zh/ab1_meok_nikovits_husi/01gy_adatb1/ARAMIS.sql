@@ -1,0 +1,11 @@
+SELECT * FROM nikovits.dolgozo;
+SELECT dnev, fizetes FROM nikovits.dolgozo WHERE fizetes > 2800;
+SELECT dnev, oazon FROM nikovits.dolgozo WHERE oazon IN(10, 20);
+SELECT dnev, jutalek FROM nikovits.dolgozo WHERE jutalek > 600;
+SELECT dnev, jutalek FROM nikovits.dolgozo WHERE jutalek <= 600;
+SELECT dnev, jutalek FROM nikovits.dolgozo WHERE jutalek IS NULL;
+SELECT foglalkozas FROM nikovits.dolgozo;
+SELECT dnev, fizetes, 2 * fizetes FROM nikovits.dolgozo WHERE oazon = 10;
+SELECT dnev, belepes FROM nikovits.dolgozo WHERE belepes LIKE TO_CHAR();
+SELECT dnev, fonoke FROM nikovits.dolgozo WHERE fonoke IS NULL;
+SELECT dnev, fonoke FROM nikovits.dolgozo WHERE fonoke = (SELECT dkod FROM nikovits.dolgozo WHERE dnev LIKE 'KING');

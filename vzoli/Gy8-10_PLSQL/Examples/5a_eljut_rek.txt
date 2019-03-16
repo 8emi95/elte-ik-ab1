@@ -1,0 +1,64 @@
+/*
+Mely (x,y) város párokra lehetséges egy vagy több átszállással 
+eljutni x városból y városba?
+1.	Eljut(x,y) <-  Járatok(l,x,y,i,é)
+2.	Eljut(x,y) <- Eljut(x,z) AND Eljut(z,y)
+*/
+CREATE OR REPLACE PROCEDURE jaratok_rekurziv
+IS
+  TYPE jarat_rec IS RECORD(honnan jaratok.honnan%TYPE, hova jaratok.hova%TYPE, atszallas VARCHAR2(1500));
+  TYPE eljut_tabla IS TABLE OF jarat_rec INDEX BY binary_integer;
+  eljut eljut_tabla;
+  ind NUMBER:=1;
+BEGIN
+  /* ELJUT (x,y) <- JARATOK(x,y)*/
+  DECLARE
+    CURSOR jarat_cursor IS SELECT honnan, hova, '.' FROM jaratok;
+    i NUMBER:=1;
+  BEGIN
+    OPEN jarat_cursor;
+    LOOP
+    FETCH jarat_cursor INTO eljut(i);
+    EXIT WHEN jarat_cursor%NOTFOUND;
+    i:=i+1;
+    END LOOP;
+    CLOSE jarat_cursor;
+  END;
+  /*ELJUT (x,y) <- ELJUT (x,z) AND ELJUT (z,y) */
+  WHILE ind <= eljut.count 
+  LOOP
+    DECLARE
+      CURSOR eljut_cursor IS 
+        SELECT hova FROM jaratok 
+            WHERE honnan = eljut(ind).hova;
+      tmp_hova jaratok.hova%TYPE;
+    BEGIN
+      OPEN eljut_cursor;
+      LOOP        
+        FETCH eljut_cursor INTO tmp_hova;
+        EXIT WHEN eljut_cursor%NOTFOUND;        
+        IF (eljut(ind).atszallas||eljut(ind).honnan||'.') 
+                          NOT LIKE ('%.'||tmp_hova||'.%') THEN
+            eljut(eljut.count+1).honnan := eljut(ind).honnan;
+            eljut(eljut.count).hova := tmp_hova;
+            eljut(eljut.count).atszallas :=
+                    eljut(ind).atszallas||eljut(ind).hova||'.';
+        END IF;
+      END LOOP;      
+      CLOSE eljut_cursor;      
+    END;    
+    ind:=ind+1;    
+  END LOOP;
+  FOR eljutas IN 1..eljut.COUNT 
+  LOOP
+  dbms_output.put_line(eljut(eljutas).honnan||'-'||eljut(eljutas).hova||'-'||eljut(eljutas).atszallas);
+  END LOOP;
+END;
+/
+
+SHOW ERRORS;
+SET SERVEROUTPUT ON;
+
+CALL jaratok_rekurziv();
+
+DROP PROCEDURE jaratok_rekurziv;

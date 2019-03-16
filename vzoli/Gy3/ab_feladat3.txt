@@ -1,0 +1,84 @@
+---
+
+Dolgozo (dkod, dnev, foglalkozas, fonoke, belepes, fizetes, jutalek, oazon)	   
+Osztaly (oazon, onev, telephely)
+
+DOLGOZO tábla
+ 
+DKOD DNEV    FOGLALKOZAS FONOKE BELEPES      FIZETES JUTALEK OAZON 
+------------------------------------------------------------------- 
+7369 SMITH   CLERK       7902   1980.12.17    800            20 
+7499 ALLEN   SALESMAN    7698   1981.02.20   1600     300    30 
+7521 WARD    SALESMAN    7698   1981.02.22   1250     500    30 
+7566 JONES   MANAGER     7839   1981.04.02   2975            20 
+7654 MARTIN  SALESMAN    7698   1981.09.28   1250    1400    30 
+7698 BLAKE   MANAGER     7839   1981.05.01   2850            30 
+7782 CLARK   MANAGER     7839   1981.06.09   2450            10 
+7788 SCOTT   ANALYST     7566   1982.12.09   3000            20 
+7839 KING    PRESIDENT          1981.11.17   5000            10 
+7844 TURNER  SALESMAN    7698   1981.09.08   1500       0    30 
+7876 ADAMS   CLERK       7788   1983.01.12   1100            20 
+7900 JAMES   CLERK       7698   1981.12.03    950            30 
+7902 FORD    ANALYST     7566   1981.12.03   3000            20 
+7934 MILLER  CLERK       7782   1982.01.23   1300            10 
+
+OSZTALY tábla
+
+OAZON ONEV TELEPHELY
+--------------------------
+10 ACCOUNTING NEW YORK
+20 RESEARCH DALLAS
+30 SALES CHICAGO
+40 OPERATIONS BOSTON
+
+Lekérdezések  (rel. alg + SQL)
+------------
+Kik azok a dolgozók, akiknek a fizetése > 2800?
+Kik azok a dolgozók, akik a 10-es vagy a 20-as osztályon dolgoznak?
+Kik azok a dolgozók, akiknek a fõnöke KING?
+Adjuk meg azoknak a fõnököknek a nevét, akiknek a foglalkozása nem 'MANAGER'. (dnev)
+Adjuk meg azokat a dolgozókat, akik többet keresnek a fõnöküknél.
+Kik azok a dolgozók, akik fõnökének a fõnöke KING?
+Kik azok a dolgozók, akik osztályának telephelye DALLAS vagy CHICAGO?
+Kik azok a dolgozók, akik osztályának telephelye nem DALLAS és nem CHICAGO?
+Adjuk meg a dolgozók között elõforduló foglalkozások neveit.
+Adjuk meg azoknak a nevét, akiknek a fizetése > 2000 vagy a CHICAGO-i osztályon dolgoznak.
+Melyik osztálynak nincs dolgozója?
+Adjuk meg azokat a dolgozókat, akiknek van 2000-nél nagyobb fizetésû beosztottja.
+Adjuk meg azokat a dolgozókat, akiknek nincs 2000-nél nagyobb fizetésû beosztottja.
+Adjuk meg azokat a telephelyeket, ahol van elemzõ (ANALYST) foglalkozású dolgozó.
+Adjuk meg azokat a telephelyeket, ahol nincs elemzõ (ANALYST) foglalkozású dolgozó.
+Adjuk meg a maximális fizetésû dolgozó(k) nevét.
+
+Egy adatmodell elemei:
+----------------------
+1. Az adat struktúrája (fogalmi modell)
+2. Mûveletek (lekérdezések, módosítások)
+3. Megszorítások (milyen adatokat engedélyezünk)
+
+
+Táblák létrehozása
+------------------
+Hozzunk létre egy olyan táblát, amelynek sémája és tartalma megegyezik a VZOLI.DOLGOZO
+tábláéval. 
+Dobjuk el a táblát. (Töröljük ki az adatbázisból.)
+Hozzunk létre egy olyan táblát, amelynek sémája megegyezik az elõzõvel, de a tábla üres.
+
+
+Dolgozo (dkod, dnev, foglalkozas, fonoke, belepes, fizetes, jutalek, oazon)	   
+Osztaly (oazon, onev, telephely)
+Fiz_kategoria (kategoria, also, felso)
+
+Lekérdezések  (SQL)
+------------
+
+Kik azok a dolgozók, akik 1982.01.01 után léptek be a céghez?
+ (Aktuális dátumformátumot lásd -> SYSDATE fv.)
+Adjuk meg azon dolgozókat, akik nevében van legalább két 'L' betû. 
+Adjuk meg a dolgozók nevének utolsó három betûjét.
+Adjuk meg a dolgozók fizetéseinek négyzetgyökét két tizedesre, és ennek egészrészét. 
+Adjuk meg, hogy hány napja dolgozik a cégnél ADAMS és milyen hónapban lépett be.
+Adjuk meg azokat a (név, fõnök) párokat, ahol a két ember neve ugyanannyi betûbõl áll. 
+Adjuk meg a dolgozók nevét és fizetési kategóriáját.
+Adjuk meg azon osztályok nevét és telephelyét, amelyeknek van 1-es fizetési kategóriájú dolgozója.
+Adjuk meg azon osztályok nevét és telephelyét, amelyeknek nincs 1-es fizetési kategóriájú dolgozója.

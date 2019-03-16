@@ -1,0 +1,120 @@
+Listázza ki a főnökök azonosítóit, valamint azt, hogy hány beosztottjuk van. Rendezze a listát a beosztottak száma szerint csökkenően. Akinek nincs főnöke, oda írjon valamilyen megjegyzést ( tulajdonos vagy elnök stb.).
+
+SELECT COUNT(*), CONCAT(fonok.employee_id, NVL2(fonok.manager_id, ' Alkalmazott', ' Tulajdonos')) FROM nikovits.employees fonok
+inner join nikovits.employees beoszt ON beoszt.manager_id = fonok.employee_id
+GROUP BY fonok.employee_id, NVL2(fonok.manager_id, ' Alkalmazott', ' Tulajdonos')
+ORDER BY COUNT(*) DESC;
+
+************************************************************************************************************************
+
+Adjuk meg azokat a dolgozókat, akik többet keresnek a főnöküknél.
+
+select d1.név from dolgozo d1, dolgozo d2 where d1.fizu > d2.fizu and d1.főnök_id = d2.id
+
+************************************************************************************************************************
+
+Megvan a DOLGOZO táblám, ahol a HIREDATE dátum típusú. Hogy tudom kinyerni ebből azokat, akiket 1981-ben vettek fel? Az internet szerint a YEAR(HIREDATE)-nek működnie kéne, de nekem arra aszongya h invalid identifier.
+
+azért, mert gányolás történt. A táblaneveket konvencionálisan kisbetűkkel, angolul, többesszámban írjuk, az sql kulcsszavakat meg nagybetűvel. Az oracle szerint ha valami csupa nagybetűs, az egy konstans. Tehát vagy idézőjelek közé teszed, vagy megtanítod a tanáraidat, hogy nevezzék el normálisan a táblákat. Ez az invalid identifier oka. A year teljesen rendben van.
+
+
+Hajas Csillánál így oldottuk meg:
+--hogy erjuk el csak az evet egy datumban?
+--valasszuk ki azokat, akik '81 utan leptek be
+select dnev, belepes from dolgozo
+where to_char(belepes, 'YYYY') > '1981';
+
+--azok, akik kedden leptek be
+select dkod, dnev, to_char(belepes, 'YYYY'), --ev
+to_char(belepes, 'dd'), --hanyadika
+to_char(belepes, 'd'), --het hanyadik napja, hetfo az elso
+to_char(belepes, 'day') --milyen nap
+from dolgozo
+where to_char(belepes, 'YYYY') > '1980'
+and to_char(belepes, 'd') = 2;
+
+************************************************************************************************************************
+
+Írjunk meg egy függvényt, amelyik visszaadja a paraméterként szereplő '+'-szal elválasztott számok összegét.
+CREATE OR REPLACE FUNCTION osszeg(p_char VARCHAR2) RETURN number IS
+...
+SELECT osszeg('1 + 4 + 13 + 0') FROM dual;
+
+CREATE OR REPLACE FUNCTION osszeg(p_char VARCHAR2) RETURN number IS
+pos number := instr(p_char, '+');
+a number := substr(p_char, 0, pos-1);
+str varchar2(100) := substr(p_char, pos + 1 , length(p_char) - pos); 
+begin
+if a is null then
+return str;
+else
+return a + osszeg(str);
+end if;
+end; -- osszeg
+/
+
+************************************************************************************************************************
+
+170627
+e/k diagram volt a végén, aminél le kellett írni, hogy hogy néz ki az adatbázis, meg fogalmak voltak: egyedhalmaz, sok-sok, sok-egy kapcsolat, az elejére már nem emlékszem
+
+************************************************************************************************************************
+
+Ismertesse a külső összekapcsolásokat az alábbi példán keresztül, adott relációs sémák feletti táblák:
+OSZTALY(OAZON,ONEV,TELEPHELY)
+DOLGOZO(DKOD,DNEV,FOGLALKOZAS,FONOKE,BELEPES,FIZETES,JUTALEK,OAZON)
+Adjuk meg SQL-ben osztályonként az ott dolgozó hivatalnok foglalkozású dolgozók összfizetését,
+azok az osztályok is jelenjenek meg ahol nem dolgozik senki (ott az összfizetés 0 legyen), és ha van
+olyan dolgozó, akinek nincs megadva az osztálya, azokat egy 'FIKTIV' nevű osztályon írjuk ki!
+
+SELECT NVL(onev, 'FIKTIV'), NVL(SUM(fizetes), 0)
+FROM Osztaly, Dolgozo
+WHERE Osztaly.oazon = Dolgozo.oazon AND foglalkozas = 'hivatalnok'
+GROUP BY oazon;
+
+************************************************************************************************************************
+
+Skalárértéket adó alkérdések használata a WHERE és HAVING záradékokban, és ezek kiértékelése.
+Adott az Evett(név, gyümölcs, mennyi) séma feletti reláció. Adjuk meg SQL-ben, hogy kik azok, akik
+kevesebb almát ettek az átlagos almafogyasztásnál? (név)
+
+SELECT név
+FROM Evett
+WHERE gyümölcs = 'alma' AND mennyi < (SELECT AVG(mennyi) FROM Evett WHERE gyümölcs = 'alma' GROUP BY gyümölcs);
+
+SELECT név
+FROM Evett
+WHERE gyümölcs = 'alma'
+HAVING mennyi < (SELECT AVG(mennyi) FROM Evett WHERE gyümölcs = 'alma' GROUP BY gyümölcs);
+
+************************************************************************************************************************
+
+OSZTALY(OAZON,ONEV,TELEPHELY)
+DOLGOZO(DKOD,DNEV,FOGLALKOZAS,FONOKE,BELEPES,FIZETES,JUTALEK,OAZON)
+Az előző feladatban szereplő táblák alapján a megfelelő SQL utasítással törölje a legkisebb fizetésű
+Dallas-i dolgozót a DOLGOZO táblából, az OSZTALY táblában több Dallas-i telephelyű osztály is van!
+
+DELETE FROM Dolgozo WHERE fizetes = (
+SELECET MIN(fizetes)
+FROM Dolgozo, Osztaly
+WHERE Dolgozo.oazon = Osztaly.oazon AND telephely = 'Dallas'
+GROUP BY telephely);
+
+************************************************************************************************************************
+
+OSZTALY(OAZON,ONEV,TELEPHELY)
+DOLGOZO(DKOD,DNEV,FOGLALKOZAS,FONOKE,BELEPES,FIZETES,JUTALEK,OAZON)
+SQL DML. Adott a 7.) feladatban szereplő DOLGOZO reláció. Növeljük meg azoknak a dolgozóknak a
+jutalékát 3000-rel, akiknek legalább 2 közvetlen beosztottjuk van. Az ismeretlen (NULL) jutalékot
+vegyük úgy, mintha 0 lenne.
+
+UPDATE Dolgozo SET jutalek + 3000 WHERE dkod IN (
+SELECT dkod
+FROM Dolgozo,
+(SELECT COUNT(dkod) beosztottszam
+FROM Dolgozo
+GROUP BY fonoke) beosztott
+WHERE beosztottszam >= 2
+);
+
+************************************************************************************************************************

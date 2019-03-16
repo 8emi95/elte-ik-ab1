@@ -1,0 +1,153 @@
+
+/*************** érvényesség, láthatóság *************/
+<<cimke1>>
+DECLARE
+  a  NUMBER;
+BEGIN
+  a:=2;
+  <<cimke2>>
+  DECLARE
+    a number;
+  BEGIN
+    a:=4;
+    dbms_output.put_line(cimke1.a);
+    dbms_output.put_line(cimke2.a);
+    dbms_output.put_line(a);
+  END;
+  dbms_output.put_line(a);
+END;
+/
+EREDMÉNY:
+---------
+2
+4
+4
+2
+
+
+/************** külsõ (bind) változók használata *************/
+/* egy pointert kap meg a program, így értéket adhat a változónak */
+Variable v number;
+begin
+ :v := mod(121,3);
+END;
+/
+print v;
+
+
+/************** képernyõre írás *************/
+set serveroutput on
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Hello World!');
+END;
+
+/*
+ A SET SERVEROUTPUT ON  utasítás kiadása SQL*Plus-ban azzal egyenértékû, mintha kiadnánk a 
+ DBMS_OUTPUT.ENABLE (buffer_size => NULL); utasítást. DBMS_OUTPUT.DISABLE esetén nem ír a pufferbe.
+ A PL/SQL program valójában nem a képernyõre, hanem egy pufferbe ír. A futtató környezet 
+ (sqlplus, SqlDeveloper) ír a képernyõre, úgy, hogy kiolvassa a pufferbõl a sorokat a 
+ GET_LINE procedúrával, mint az alábbi program.
+*/
+
+SET SERVEROUTPUT ON
+DECLARE
+  v_status  INTEGER := 0;
+  v_line    VARCHAR2(100); 
+  v_buff    VARCHAR2(1000);
+BEGIN 
+  DBMS_OUTPUT.PUT_LINE('bubu'); DBMS_OUTPUT.PUT_LINE('bibi'); DBMS_OUTPUT.PUT_LINE('baba');
+  WHILE v_status = 0 LOOP
+    DBMS_OUTPUT.GET_LINE (v_line, v_status);
+    v_buff := v_buff || v_line;
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE(v_buff);
+END;
+/
+EREDMÉNY:
+---------
+bububibibaba
+
+
+/*
+A futtató környezet csak a program lefutása után olvassa ki a puffert, és írja ki a képernyõre.
+Ha nincs SET SERVEROUTPUT ON, akkor a pufferben marad ami oda került és lehet, hogy a következõ
+program fogja kiírni a képernyõre. 
+*/
+
+SET SERVEROUTPUT OFF
+BEGIN 
+  DBMS_OUTPUT.PUT_LINE('elsõ program');     -- nem fog megjelenni a képernyõn
+  DBMS_OUTPUT.PUT_LINE('elsõ program');     -- nem fog megjelenni a képernyõn
+END;
+/
+
+SET SERVEROUTPUT ON
+DECLARE
+  v_status  INTEGER := 0;
+  v_line    VARCHAR2(100); 
+BEGIN 
+  WHILE v_status = 0 LOOP
+    DBMS_OUTPUT.GET_LINE (v_line, v_status);       -- kiolvassa a puffer tartalmát
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE('második program');         -- beleír
+END;
+/
+EREDMÉNY:
+---------
+második program
+
+
+/****************** adatbekérés a felhasználótól ****************/
+/* még az SQL utasítás szerverhez való elküldése elõtt behelyettesítõdik az érték */
+/* lásd az SQL*Plus Referenciában az ACCEPT utasítást */
+
+ACCEPT v1 NUMBER FORMAT '99' PROMPT 'Adja meg az osztály azonosítót:'
+ACCEPT v2 DATE FORMAT 'yyyy.mm.dd' DEFAULT 1982.01.01 PROMPT 'Dátum (formátum: 2013.01.30)'
+SET verify off          -- ne írja ki a helyettesítési változóval az utasításokat
+set serveroutput on
+DECLARE 
+  v_osszeg NUMBER;
+BEGIN
+  SELECT sum(fizetes) INTO v_osszeg FROM dolgozo WHERE oazon = &v1 AND belepes < to_date('&v2', 'yyyy.mm.dd');
+  dbms_output.put_line(v_osszeg);
+END;
+/
+
+
+/****************** rekordok ****************/
+DECLARE
+  TYPE rektip IS RECORD(m1 INTEGER, m2 VARCHAR2(10));
+  rec rektip;
+BEGIN
+  rec.m1 := 1; rec.m2 := 'Bubu';
+  DBMS_OUTPUT. PUT_LINE(rec.m2);
+END;
+
+
+/****************** rekordok, tömbök ****************/
+set serveroutput on
+DECLARE
+  TYPE rek_type IS RECORD(f1 INTEGER DEFAULT 10, f2 osztaly%ROWTYPE);  -- beágyazott rekord
+  rec rek_type;
+  TYPE tab_type IS TABLE OF INTEGER INDEX BY BINARY_INTEGER;   -- asszociatív tömb (index by tömb)
+  TYPE rek_type2 IS RECORD(f1 INTEGER, f2 tab_type);           -- mezõbe ágyazott tömb
+  rec2 rek_type2;
+  rec_oszt osztaly%ROWTYPE;     -- ez is rekord
+BEGIN
+ rec_oszt.onev := 'SALES';
+ dbms_output.put_line(rec.f1);                          -- default érték  
+ SELECT * INTO rec.f2 FROM osztaly WHERE oazon = 10;
+ dbms_output.put_line(rec.f2.telephely);
+ rec2.f2(1) := 100; rec2.f2(2) := 200; rec2.f2(3) := 300;
+ FOR i IN rec2.f2.FIRST .. rec2.f2.LAST LOOP
+   dbms_output.put_line(rec2.f2(i));
+ END LOOP;
+END;
+/
+EREDMÉNY:
+---------
+10
+NEW YORK
+100
+200
+300

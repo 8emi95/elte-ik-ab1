@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.storage.oracle.v9i.StructuredTypeProxyOraclev9i parentClass="oracle.dbtools.crest.model.design.storage.oracle.StructuredTypeProxyOracle">
+   <property name="javaClass" dataType="java.lang.String" defaultValue="" xmlName="javaClass" xmlType="element" getter="getJavaClass" setter="setJavaClass" reffered="false"/>
+   <property name="javaInstanceUsing" dataType="java.lang.String" defaultValue="" xmlName="javaInstanceUsing" xmlType="element" getter="getJavaInstanceUsing" setter="setJavaInstanceUsing" reffered="false"/>
+   <property name="mapToJavaClass" dataType="java.lang.String" defaultValue="NO" xmlName="mapToJavaClass" xmlType="element" getter="getMapToJavaClass" setter="setMapToJavaClass" reffered="false"/>
+   <roproperty name="final" dataType="java.lang.String" getter="getFinal"/>
+   <roproperty name="instantiable" dataType="java.lang.String" getter="getInstantiable"/>
+   <roproperty name="superType" dataType="java.lang.String" getter="getSuperType"/>
+</oracle.dbtools.crest.model.design.storage.oracle.v9i.StructuredTypeProxyOraclev9i>

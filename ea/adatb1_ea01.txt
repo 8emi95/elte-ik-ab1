@@ -1,0 +1,4 @@
+name: hallgato
+pwd: eltegyak
+
+vizsgák keddenként, délben, bolyaiban

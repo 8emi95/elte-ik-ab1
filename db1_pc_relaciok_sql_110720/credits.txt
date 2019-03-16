@@ -1,0 +1,8 @@
+Ezek a megoldások nem jöhettek volna létre 
+Iván Gergõ (IVGRAAI.ELTE) segítsége nélkül.
+
+Az SQL-es megvalósítást én követtem el,
+Gubicza József (GUJQAAI.ELTE).
+
+Bármilyen észrevételt, javaslatot, adományt,
+csirkeáldozatot, a gjozsi@caesar.elte.hu-ra várok.

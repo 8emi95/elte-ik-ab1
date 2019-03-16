@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.openide.windows">
+    <module_version install_time="1372334346353" last="true" origin="installer" specification_version="6.60.1">
+        <file crc="3877728110" name="config/Modules/org-openide-windows.xml"/>
+        <file crc="1907269712" name="modules/locale/org-openide-windows_de.jar"/>
+        <file crc="97865611" name="modules/locale/org-openide-windows_es.jar"/>
+        <file crc="1713858088" name="modules/locale/org-openide-windows_fr.jar"/>
+        <file crc="3576992161" name="modules/locale/org-openide-windows_it.jar"/>
+        <file crc="295248894" name="modules/locale/org-openide-windows_ja.jar"/>
+        <file crc="588817641" name="modules/locale/org-openide-windows_ko.jar"/>
+        <file crc="3364163034" name="modules/locale/org-openide-windows_pt_BR.jar"/>
+        <file crc="605986424" name="modules/locale/org-openide-windows_zh_CN.jar"/>
+        <file crc="1378824644" name="modules/locale/org-openide-windows_zh_TW.jar"/>
+        <file crc="3942177271" name="modules/org-openide-windows.jar"/>
+    </module_version>
+</module>

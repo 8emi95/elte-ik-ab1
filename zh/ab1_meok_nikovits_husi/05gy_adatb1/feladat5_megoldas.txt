@@ -1,0 +1,88 @@
+Alkérdések használata (subquery)
+--------------------------------
+
+A korábbi táblák:
+-------------------------------------
+NIKOVITS.DOLGOZO       (dkod, dnev, foglalkozas, fonoke, belepes, fizetes, jutalek, oazon)
+NIKOVITS.OSZTALY       (oazon, onev, telephely)
+NIKOVITS.Fiz_kategoria (kategoria, also, felso)
+NIKOVITS.Szeret        (nev, gyumolcs)
+-------------------------------------
+Lekérdezések  (Kiterjesztett rel. alg. + SQL. Ahol beépített függvényre van szükség ott csak SQL)
+------------
+
+-- Adjuk meg azon osztályok nevét és telephelyét, amelyeknek van 1-es fizetési kategóriájú dolgozója.
+SELECT onev, telephely from osztaly WHERE oazon IN
+  (SELECT oazon FROM dolgozo, fiz_kategoria 
+   WHERE kategoria=1 AND fizetes BETWEEN also AND felso);
+
+-- Adjuk meg azon osztályok nevét és telephelyét, amelyeknek nincs 1-es fizetési kategóriájú dolgozója.
+SELECT onev, telephely from osztaly WHERE oazon NOT IN
+  (SELECT oazon FROM dolgozo, fiz_kategoria 
+   WHERE kategoria=1 AND fizetes BETWEEN also AND felso);
+
+-- Adjuk meg azon osztályok nevét és telephelyét, amelyeknek két 1-es kategóriájú dolgozója van.
+SELECT onev, telephely from osztaly WHERE oazon IN
+  (SELECT oazon FROM dolgozo, fiz_kategoria 
+   WHERE kategoria=1 AND fizetes BETWEEN also AND felso
+   GROUP BY oazon
+   HAVING COUNT(dnev)=2);
+
+-- Adjuk meg azokat a foglalkozásokat, amelyek csak egyetlen osztályon fordulnak elõ,
+-- és adjuk meg hozzájuk azt az osztályt is, ahol van ilyen foglalkozású dolgozó. (Foglalkozás, Onev)
+SELECT DISTINCT foglalkozas, onev FROM dolgozo NATURAL JOIN osztaly
+WHERE foglalkozas IN
+  (SELECT foglalkozas FROM dolgozo 
+   GROUP BY foglalkozas HAVING count(DISTINCT oazon) = 1);
+
+-- Adjuk meg azon dolgozók nevét, fizetését, jutalékát, adósávját és fizetendõ adóját, akik
+-- nevében van S-betû. Adósávok 1000 alatt 0%, 1000 és 2000 között 20%, 2000 és 3000 között
+-- 30%, 3000 fölött 35%. Az adót a teljes jvedelemre (sal+comm) a megadott kulccsal kell fizetni.
+SELECT ename, sal, comm, sal+NVL(comm,0) jov, 
+       DECODE(TRUNC((sal+NVL(comm,0))/1000, 0),  0, 0.00,  1, 0.20,  2, 0.30,  0.45) ado_arany,
+       sal * DECODE(TRUNC((sal+NVL(comm,0))/1000, 0),  0, 0.00,  1, 0.20,  2, 0.30,  0.35) ado
+FROM emp WHERE ename like '%S%';
+
+-- Adjuk meg osztályonként a legnagyobb fizetésu dolgozó(ka)t, és a fizetést (oazon, dnev, fizetes).
+SELECT dolgozo.oazon, dnev, fizetes
+FROM dolgozo, (SELECT oazon, MAX(fizetes) mf FROM dolgozo GROUP BY oazon) t
+WHERE dolgozo.oazon=t.oazon and dolgozo.fizetes=mf;
+
+-- Adjuk meg, hogy kik szeretnek minden gyümölcsöt. 
+-- (Adjuk meg a megoldást összesítõ függvény használata nélkül, és összesítõ függvénnyel is.)
+SELECT nev FROM szeret
+GROUP BY nev 
+HAVING count(gyumolcs) = (SELECT COUNT(DISTINCT gyumolcs) FROM szeret);
+
+-- Adjuk meg azokat a fizetési kategóriákat, amelyekbe beleesik legalább 3 olyan dolgozónak
+-- a fizetése, akinek nincs beosztottja.
+SELECT kategoria FROM dolgozo, fiz_kategoria 
+WHERE fizetes BETWEEN also AND felso AND dkod NOT IN (SELECT NVL(fonoke,0) FROM dolgozo)
+GROUP BY kategoria HAVING COUNT(dkod) >=3;
+
+-- Adjuk meg a legrosszabbul keresõ fõnök fizetését, és fizetési kategóriáját. (Fizetés, Kategória)
+SELECT minf, kategoria FROM fiz_kategoria,
+  (SELECT MIN(fizetes) minf FROM dolgozo WHERE dkod IN (SELECT fonoke FROM dolgozo)) t
+WHERE t.minf BETWEEN also AND felso;
+
+-- Adjuk meg, hogy (kerekítve) hány hónapja dolgoznak a cégnél azok a dolgozók, akiknek a DALLAS-i
+-- telephelyû osztályon a legnagyobb a fizetésük. (Dnev, Hónapok)
+SELECT dnev, round(months_between(sysdate, belepes)) FROM dolgozo
+WHERE fizetes = (SELECT max(fizetes) FROM dolgozo natural join osztaly
+                 WHERE telephely='DALLAS');
+
+-- Adjuk meg azokat a foglalkozásokat, amelyek csak egyetlen osztályon fordulnak elõ,
+-- és adjuk meg hozzájuk azt az osztályt is, ahol van ilyen foglalkozású dolgozó. (Foglalkozás, Onev)
+SELECT DISTINCT foglalkozas, onev FROM dolgozo NATURAL JOIN osztaly
+WHERE foglalkozas IN
+  (SELECT foglalkozas FROM dolgozo GROUP BY foglalkozas HAVING count(DISTINCT oazon) = 1);
+
+-- Adjuk meg azoknak a dolgozóknak a nevét és fizetését, akik fizetése a 10-es és 20-as osztályok 
+-- átlagfizetése közé esik. (Nem tudjuk, hogy melyik átlag a nagyobb!)
+SELECT dnev, fizetes FROM dolgozo 
+WHERE fizetes BETWEEN (SELECT avg(fizetes) FROM dolgozo WHERE oazon=10)
+              AND (SELECT avg(fizetes) FROM dolgozo WHERE oazon=20)
+OR fizetes BETWEEN (SELECT avg(fizetes) FROM dolgozo WHERE oazon=20)
+              AND (SELECT avg(fizetes) FROM dolgozo WHERE oazon=10);
+
+

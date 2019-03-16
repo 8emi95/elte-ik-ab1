@@ -1,0 +1,101 @@
+Lekérdezések további táblákra
+-----------------------------
+NIKOVITS.DOLGOZO       (dkod, dnev, foglalkozas, fonoke, belepes, fizetes, jutalek, oazon)
+NIKOVITS.OSZTALY       (oazon, onev, telephely)
+NIKOVITS.Fiz_kategoria (kategoria, also, felso)
+-----------------------------------------------
+1   700  1200
+2  1201  1400
+3  1401  2000
+4  2001  3000
+5  3001  9999
+
+CREATE TABLE Fiz_kategoria
+ (kategoria NUMERIC, 
+  also NUMERIC, 
+  felso NUMERIC
+);
+
+További feladatokra lásd még:
+Kende Mária-Nagy István: Oracle példatár - SQL, PL/SQL. Panem kiadó.
+(Az elõadó honlapján megtalálható)
+
+
+Beépített függvények
+--------------------
+-- Adjuk meg azon dolgozókat, akik fizetése osztható 15-tel.
+SELECT dnev FROM dolgozo WHERE mod(fizetes, 15) = 0;
+
+-- Kik azok a dolgozók, akik 1982.01.01 után léptek be a céghez?
+   (Aktuális dátumformátumot lásd -> SYSDATE fv.)
+SELECT dnev, belepes FROM dolgozo WHERE belepes > to_date('1982.01.01', 'yyyy.mm.dd');
+
+-- Adjuk meg azon dolgozókat, akik nevének második betûje 'A'.
+   lásd substr() paraméterei
+SELECT dnev FROM dolgozo WHERE substr(dnev,2,1) = 'A';
+
+-- Adjuk meg azon dolgozókat, akik nevében van legalább két 'L' betû. (függvény használatával)
+   lásd instr() paraméterei
+SELECT dnev FROM dolgozo WHERE instr(dnev,'L', 1, 2) > 0;
+
+-- Adjuk meg a dolgozók nevének utolsó három betûjét.
+   lásd substr() negatív paraméterrel
+SELECT dnev, substr(dnev,-3) FROM dolgozo;
+
+-- Adjuk meg azon dolgozókat, akik nevének utolsó elõtti betûje 'T'.
+SELECT dnev FROM dolgozo WHERE substr(dnev, -2, 1)= 'T';
+
+-- Adjuk meg a dolgozók fizetéseinek négyzetgyökét két tizedesre, és ennek egészrészét. 
+   lásd függvények egymásba ágyazása
+SELECT round(sqrt(fizetes), 2), trunc(round(sqrt(fizetes), 2), 0)  FROM dolgozo;
+
+-- Adjuk meg, hogy hány napja dolgozik a cégnél ADAMS és milyen hónapban lépett be.
+   lásd dátum aritmetika
+SELECT belepes, trunc(sysdate - belepes), to_char(belepes, 'Month')  
+FROM dolgozo WHERE dnev = 'ADAMS';
+
+-- Adjuk meg azokat a dolgozókat, akik keddi napon léptek be. (Vigyázzunk a visszaadott értékkel!)
+SELECT dnev, belepes FROM dolgozo WHERE to_char(belepes, 'day') LIKE 'kedd%';
+
+-- Adjuk meg azokat a (név, fõnök) párokat, ahol a két ember neve ugyanannyi betûbõl áll. 
+SELECT beo.dnev beosztott, fonok.dnev  fonok
+FROM dolgozo beo, dolgozo fonok 
+WHERE beo.fonoke=fonok.dkod and length(beo.dnev) = length(fonok.dnev);
+
+-- Adjuk meg azon dolgozókat, akik az 1-es fizetési kategóriába tartoznak.
+SELECT dnev, kategoria FROM dolgozo, fiz_kategoria
+WHERE fizetes BETWEEN also AND felso AND kategoria=1;
+
+-- Adjuk meg azon dolgozókat, akiknek a fizetési kategóriája páros szám.
+SELECT dnev, kategoria FROM dolgozo, fiz_kategoria
+WHERE fizetes BETWEEN also AND felso AND mod(kategoria,2)=0;
+
+-- Adjuk meg, hogy hány nap volt KING és JONES belépési dátuma között?
+SELECT d1.belepes - d2.belepes FROM dolgozo d1, dolgozo d2 
+WHERE d1.dnev='KING' AND d2.dnev='JONES';
+
+-- Adjuk meg, hogy milyen napra esett KING belépési dátuma hónapjának utolsó napja.
+SELECT to_char(last_day(belepes), 'day') FROM dolgozo WHERE dnev='KING';
+
+-- Adjuk meg, hogy milyen napra esett KING belépési dátuma hónapjának elsõ napja.
+SELECT to_char(trunc(belepes, 'month'), 'day') FROM dolgozo WHERE dnev='KING';
+
+-- Adjuk meg azon dolgozók nevét, akik osztályának nevében van 'C' betû és fizetési kategóriájuk >=4.
+SELECT dnev, onev, kategoria FROM dolgozo d, osztaly o, fiz_kategoria
+WHERE fizetes BETWEEN also AND felso AND o.oazon=d.oazon
+AND onev LIKE '%C%' AND kategoria > 3;
+
+1.6 példa (Kende-Nagy) 
+-- Listázzuk ki a dolgozók nevét és fizetését, valamint jelenítsük meg a fizetést grafikusan
+   úgy, hogy a fizetést 1000 Ft-ra kerekítve, minden 1000 Ft-ot egy '#' jel jelöl.
+   (például 5000 -> #####, 800 -> #)
+-- lásd lpad, rpad. Vigyázat: rpad('', 3, 'x') = rpad(null, 3, 'x')
+SELECT dnev, fizetes, rpad('#', round(fizetes, -3)/1000, '#') FROM dolgozo;
+
+
+1.8 példa
+-- Listázzuk ki azoknak a dolgozóknak a nevét, fizetését, jutalékát, és a jutalék/fizetés
+   arányát, akiknek a foglalkozása eladó (SALESMAN). Az arányt két tizedesen jelenítsük meg.
+SELECT dnev, fizetes, jutalek, to_char(round(jutalek/fizetes, 2), '0.99') 
+FROM dolgozo WHERE foglalkozas = 'SALESMAN';
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.modules.keyring">
+    <module_version install_time="1372333764366" last="true" origin="installer" specification_version="1.14.1">
+        <file crc="3581559990" name="config/Modules/org-netbeans-modules-keyring.xml"/>
+        <file crc="85454131" name="modules/locale/org-netbeans-modules-keyring_de.jar"/>
+        <file crc="538074268" name="modules/locale/org-netbeans-modules-keyring_es.jar"/>
+        <file crc="784464689" name="modules/locale/org-netbeans-modules-keyring_fr.jar"/>
+        <file crc="783075269" name="modules/locale/org-netbeans-modules-keyring_it.jar"/>
+        <file crc="3180048005" name="modules/locale/org-netbeans-modules-keyring_ja.jar"/>
+        <file crc="3380178128" name="modules/locale/org-netbeans-modules-keyring_ko.jar"/>
+        <file crc="1000560382" name="modules/locale/org-netbeans-modules-keyring_pt_BR.jar"/>
+        <file crc="2415766978" name="modules/locale/org-netbeans-modules-keyring_zh_CN.jar"/>
+        <file crc="560099922" name="modules/org-netbeans-modules-keyring.jar"/>
+    </module_version>
+</module>

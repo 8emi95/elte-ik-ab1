@@ -1,0 +1,21 @@
+Direkt szorzat, természetes összekapcsolás, Théta-összekapcsolás a relációs algebrában
+Nézettáblák definíciója, létrehozása
+CURSOR definíciója, használata
+Veszteségmentes összekapcsolás
+Vetítés, szelekció mûvelete a relációs algebrában és SQL-ben
+Csoportosítás, összesítés, rendezés mûvelete az SQL-ben
+CURSOR használata és a fetch utasítás (nagyon gyakori)
+Funkcionális függõség definíciója
+Relációs algebrai kifejezések, kifejezésfa
+Külsõ összekapcsolások az SQL-ben
+Függvények és eljárások megadása PSM-ben vagy PL/SQL-ben
+Funkcionális függõségekre vonatkozó levezetési szabályok, Armstrong axiómák
+CREATE TABLE és kulcsok
+GROUP BY záradék és összesítések
+Elsõdleges kulcs, idegen kulcs SQL-ben.
+Az UPDATE parancs használata SQL-ben
+3NF
+DISTINCT, ALL
+Tárolt eljárások (PSM vagy PL/SQL-ben)
+Sorokra vonatkozó feltételek
+Relációs algebrai halmazmûveletek az SQL-ben, multihalmazok esetén is

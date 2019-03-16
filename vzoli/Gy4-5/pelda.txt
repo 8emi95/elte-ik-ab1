@@ -1,0 +1,95 @@
+-- Szeret tábla
+-- Direkt szorzat
+select distinct s.nev
+from szeret s, szeret s2
+where s.nev = s2.nev
+and s.gyumolcs != s2.gyumolcs; 
+-- vagy
+select distinct s.nev
+from szeret s cross join szeret s2
+where s.nev = s2.nev
+and s.gyumolcs != s2.gyumolcs; 
+--
+-- NATURAL JOIN
+select distinct nev
+from szeret  natural join (select nev, gyumolcs g2 from szeret)
+where gyumolcs != g2; 
+--
+-- JOIN
+select distinct nev
+from szeret s join szeret s2 using(NEV)
+where s.gyumolcs != s2.gyumolcs; 
+--
+--
+-- Osztaly, Dolgozo tablák
+TYPES
+1     Equi join
+2     Non-equi join
+3     Self join
+4     Natural join
+5     Cross join
+6     Outer join 
+		Left outer 
+		Right outer 
+		Full outer 
+7     Inner join
+8     Using clause
+9     On clause
+
+
+-- 1. EQUI JOIN
+---- Direkt szorzattal
+select empno,ename,job,dname,loc 
+ from emp e,dept d 
+ where e.deptno=d.deptno;
+---- USING használatával
+ select empno,ename,job ,dname,loc 
+  from emp e join dept d 
+  using(deptno);
+---- On használatával
+select empno,ename,job,dname,loc 
+ from emp e join dept d 
+ on(e.deptno=d.deptno);
+--
+-- 2. NON-EQUI JOIN
+Select empno,ename,job,dname,loc 
+from emp e,dept d 
+where e.deptno > d.deptno;
+-- 3. SELF JOIN
+Select e1.empno,e2.ename,e1.job,e2.deptno 
+from emp e1,emp e2 
+where e1.empno=e2.mgr;
+--
+-- 4. NATURAL JOIN
+select empno,ename,job,dname,loc from emp natural join dept;
+-- 5. CROSS JOIN
+select empno,ename,job,dname,loc from emp cross join dept;
+-- 6. OUTER JOIN
+-- Outer join gives the non-matching records along with matching records.
+-- LEFT OUTER JOIN
+--This will display the all matching records and the records 
+--which are in left hand side table those that are not in right hand side table.
+select empno,ename,job,dname,loc 
+from emp e left outer join dept d
+on(e.deptno=d.deptno);
+-- vagy
+select empno,ename,job,dname,loc 
+from emp e,dept d 
+where e.deptno=d.deptno(+);
+--
+-- RIGHT OUTER JOIN
+-- This will display the all matching records and the records which are in right hand side table 
+--those that are not in left hand side table.
+select empno,ename,job,dname,loc 
+from emp e right outer join dept d on(e.deptno=d.deptno);
+-- vagy 
+select empno,ename,job,dname,loc 
+from emp e,dept d where e.deptno(+) = d.deptno;
+-- FULL OUTER JOIN
+--This will display the all matching records and the non-matching records from both tables.
+select empno,ename,job,dname,loc 
+from emp e full outer join dept d on(e.deptno=d.deptno);
+--
+-- 7. INNER JOIN
+-- This will display all the records that have matched.
+select empno,ename,job,dname,loc from emp inner join dept using(deptno);

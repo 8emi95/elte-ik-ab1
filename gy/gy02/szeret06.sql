@@ -1,0 +1,7 @@
+SELECT distinct NEV
+FROM SZERET
+WHERE GYUMOLCS = 'alma'
+INTERSECT
+SELECT distinct NEV
+FROM SZERET
+WHERE GYUMOLCS = 'körte'; -- metszet

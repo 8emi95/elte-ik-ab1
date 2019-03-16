@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<WorkflowProcess Version="11.2.0.1.9" xmlns="http://xmlns.oracle.com/odmr11">
+    <Nodes>
+        <DataSource Status="Complete" Name="MINING_DATA_BUILD_V" Id="10001">
+            <Icon SHAPE="RoundRectangle" YCOORD="193" XCOORD="89"></Icon>
+            <Messages/>
+            <CacheSettings GenerateCache="false" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10001" as (select /*+ inline */ "MINING_DATA_BUILD_V"."AGE", 
+"MINING_DATA_BUILD_V"."OCCUPATION", 
+"MINING_DATA_BUILD_V"."CUST_INCOME_LEVEL", 
+"MINING_DATA_BUILD_V"."FLAT_PANEL_MONITOR", 
+"MINING_DATA_BUILD_V"."YRS_RESIDENCE", 
+"MINING_DATA_BUILD_V"."HOME_THEATER_PACKAGE", 
+"MINING_DATA_BUILD_V"."HOUSEHOLD_SIZE", 
+"MINING_DATA_BUILD_V"."BULK_PACK_DISKETTES", 
+"MINING_DATA_BUILD_V"."Y_BOX_GAMES", 
+"MINING_DATA_BUILD_V"."AFFINITY_CARD", 
+"MINING_DATA_BUILD_V"."CUST_ID", 
+"MINING_DATA_BUILD_V"."PRINTER_SUPPLIES", 
+"MINING_DATA_BUILD_V"."CUST_MARITAL_STATUS", 
+"MINING_DATA_BUILD_V"."EDUCATION", 
+"MINING_DATA_BUILD_V"."CUST_GENDER", 
+"MINING_DATA_BUILD_V"."COUNTRY_NAME", 
+"MINING_DATA_BUILD_V"."OS_DOC_SET_KANJI", 
+"MINING_DATA_BUILD_V"."BOOKKEEPING_APPLICATION" 
+from "MINER"."MINING_DATA_BUILD_V"  )</SQLExpression>
+            <Attributes>
+                <Attribute Status="Valid" DataType="NUMBER" Name="AGE"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="OCCUPATION"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="CUST_INCOME_LEVEL"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="FLAT_PANEL_MONITOR"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="YRS_RESIDENCE"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="HOME_THEATER_PACKAGE"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="HOUSEHOLD_SIZE"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="BULK_PACK_DISKETTES"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="Y_BOX_GAMES"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="AFFINITY_CARD"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="CUST_ID"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="PRINTER_SUPPLIES"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="CUST_MARITAL_STATUS"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="EDUCATION"/>
+                <Attribute Status="Valid" DataType="CHAR" Name="CUST_GENDER"/>
+                <Attribute Status="Valid" DataType="VARCHAR2" Name="COUNTRY_NAME"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="OS_DOC_SET_KANJI"/>
+                <Attribute Status="Valid" DataType="NUMBER" Name="BOOKKEEPING_APPLICATION"/>
+            </Attributes>
+            <SourceTable Name="MINING_DATA_BUILD_V" Schema=""/>
+        </DataSource>
+        <DataProfile AutoSpec="Yes" Status="Complete" Name="ExploreMiningData" Id="10002">
+            <Icon SHAPE="RoundRectangle" YCOORD="321" XCOORD="90"></Icon>
+            <Messages/>
+            <CacheSettings GenerateCache="false" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10002" AS ( SELECT /*+ inline */  ATTR,
+  DATA_TYPE,
+  NULL_PERCENT,
+  DISTINCT_CNT,
+  DISTINCT_PERCENT,
+  MODE_VALUE,
+  AVG,
+  MIN,
+  MAX,
+  STD,
+  VAR,
+  SKEWNESS,
+  KURTOSIS,
+  HISTOGRAMS FROM OUTPUT_1_46)</SQLExpression>
+            <DataProfileInput>
+                <Attributes>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="AGE"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="OCCUPATION"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="CUST_INCOME_LEVEL"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="FLAT_PANEL_MONITOR"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="YRS_RESIDENCE"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="HOME_THEATER_PACKAGE"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="HOUSEHOLD_SIZE"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="BULK_PACK_DISKETTES"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="Y_BOX_GAMES"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="AFFINITY_CARD"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="CUST_ID"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="PRINTER_SUPPLIES"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="CUST_MARITAL_STATUS"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="EDUCATION"/>
+                    <Attribute Status="Valid" DataType="CHAR" Name="CUST_GENDER"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="COUNTRY_NAME"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="OS_DOC_SET_KANJI"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="BOOKKEEPING_APPLICATION"/>
+                </Attributes>
+            </DataProfileInput>
+            <DataProfileOutput>
+                <Attributes>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="ATTR"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="DATA_TYPE"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="NULL_PERCENT"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="DISTINCT_CNT"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="DISTINCT_PERCENT"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="MODE_VALUE"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="AVG"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="MIN"/>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="MAX"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="STD"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="VAR"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="SKEWNESS"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="KURTOSIS"/>
+                    <Attribute Status="Valid" DataType="ODMR_HISTOGRAMS" Name="HISTOGRAMS"/>
+                </Attributes>
+            </DataProfileOutput>
+            <DataProfileSettings>
+                <NumericalBins>10</NumericalBins>
+                <CategoricalBins>10</CategoricalBins>
+                <DateBins>10</DateBins>
+            </DataProfileSettings>
+            <StatisticTable CreationDate="2011-03-08T11:53:45.000000" Name="OUTPUT_1_46"/>
+            <SampleSettings GenerateCache="true" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <Random Seed="12345"/>
+                </Method>
+            </SampleSettings>
+        </DataProfile>
+        <Transformation Status="Complete" Name="BinOccupation" Id="10010">
+            <Icon SHAPE="RoundRectangle" YCOORD="177" XCOORD="397"></Icon>
+            <Messages/>
+            <CacheSettings GenerateCache="false" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10010" AS ( SELECT /*+ inline */ "AFFINITY_CARD",
+  "AGE",
+  "BOOKKEEPING_APPLICATION",
+  "BULK_PACK_DISKETTES",
+  "COUNTRY_NAME",
+  "CUST_GENDER",
+  "CUST_ID",
+  "CUST_INCOME_LEVEL",
+  "CUST_MARITAL_STATUS",
+  "EDUCATION",
+  "FLAT_PANEL_MONITOR",
+  "HOME_THEATER_PACKAGE",
+  "HOUSEHOLD_SIZE",
+  "OS_DOC_SET_KANJI",
+  "PRINTER_SUPPLIES",
+  "YRS_RESIDENCE",
+  "Y_BOX_GAMES",
+  case when TO_CHAR("OCCUPATION") in ( 'Exec.','Crafts','Sales','Cleric.','Prof.','Machine','?','Transp.','Handler') then TO_CHAR("OCCUPATION")
+        when TO_CHAR("OCCUPATION") is null then 'Null'
+        else 'Other'  end "OCCUPATION_BIN" FROM {INPUT_SOURCE} ) </SQLExpression>
+            <TransformationSourceAttributes>
+                <TransformationSourceAttributeType Status="Valid" DataType="NUMBER" Name="AFFINITY_CARD">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="NUMBER" Name="AGE">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="NUMBER" Name="BOOKKEEPING_APPLICATION">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="NUMBER" Name="BULK_PACK_DISKETTES">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="VARCHAR2" Name="COUNTRY_NAME">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="CHAR" Name="CUST_GENDER">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="NUMBER" Name="CUST_ID">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="VARCHAR2" Name="CUST_INCOME_LEVEL">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="VARCHAR2" Name="CUST_MARITAL_STATUS">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="VARCHAR2" Name="EDUCATION">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="NUMBER" Name="FLAT_PANEL_MONITOR">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="NUMBER" Name="HOME_THEATER_PACKAGE">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="VARCHAR2" Name="HOUSEHOLD_SIZE">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="VARCHAR2" Name="OCCUPATION">
+                    <IsOutput>false</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="NUMBER" Name="OS_DOC_SET_KANJI">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="NUMBER" Name="PRINTER_SUPPLIES">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="NUMBER" Name="YRS_RESIDENCE">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+                <TransformationSourceAttributeType Status="Valid" DataType="NUMBER" Name="Y_BOX_GAMES">
+                    <IsOutput>true</IsOutput>
+                </TransformationSourceAttributeType>
+            </TransformationSourceAttributes>
+            <TransformedAttributes>
+                <MapTransformedSourceType>
+                    <key Status="Valid" DataType="VARCHAR2" Name="OCCUPATION_BIN">
+                        <IsOutput>true</IsOutput>
+                        <TransformationElementType>
+                            <Binning>
+                                <TopN>
+                                    <CategoricalBin>
+                                        <Name>Exec.</Name>
+                                        <IsOther>false</IsOther>
+                                        <StringCollectionValues>
+                                            <Value>Exec.</Value>
+                                        </StringCollectionValues>
+                                    </CategoricalBin>
+                                    <CategoricalBin>
+                                        <Name>Crafts</Name>
+                                        <IsOther>false</IsOther>
+                                        <StringCollectionValues>
+                                            <Value>Crafts</Value>
+                                        </StringCollectionValues>
+                                    </CategoricalBin>
+                                    <CategoricalBin>
+                                        <Name>Sales</Name>
+                                        <IsOther>false</IsOther>
+                                        <StringCollectionValues>
+                                            <Value>Sales</Value>
+                                        </StringCollectionValues>
+                                    </CategoricalBin>
+                                    <CategoricalBin>
+                                        <Name>Cleric.</Name>
+                                        <IsOther>false</IsOther>
+                                        <StringCollectionValues>
+                                            <Value>Cleric.</Value>
+                                        </StringCollectionValues>
+                                    </CategoricalBin>
+                                    <CategoricalBin>
+                                        <Name>Prof.</Name>
+                                        <IsOther>false</IsOther>
+                                        <StringCollectionValues>
+                                            <Value>Prof.</Value>
+                                        </StringCollectionValues>
+                                    </CategoricalBin>
+                                    <CategoricalBin>
+                                        <Name>Other</Name>
+                                        <IsOther>true</IsOther>
+                                        <StringCollectionValues>
+                                            <Value>Other</Value>
+                                        </StringCollectionValues>
+                                    </CategoricalBin>
+                                    <CategoricalBin>
+                                        <Name>Other</Name>
+                                        <IsOther>true</IsOther>
+                                        <StringCollectionValues>
+                                            <Value>Other</Value>
+                                        </StringCollectionValues>
+                                    </CategoricalBin>
+                                    <CategoricalBin>
+                                        <Name>Machine</Name>
+                                        <IsOther>false</IsOther>
+                                        <StringCollectionValues>
+                                            <Value>Machine</Value>
+                                        </StringCollectionValues>
+                                    </CategoricalBin>
+                                    <CategoricalBin>
+                                        <Name>?</Name>
+                                        <IsOther>false</IsOther>
+                                        <StringCollectionValues>
+                                            <Value>?</Value>
+                                        </StringCollectionValues>
+                                    </CategoricalBin>
+                                    <CategoricalBin>
+                                        <Name>Transp.</Name>
+                                        <IsOther>false</IsOther>
+                                        <StringCollectionValues>
+                                            <Value>Transp.</Value>
+                                        </StringCollectionValues>
+                                    </CategoricalBin>
+                                    <CategoricalBin>
+                                        <Name>Handler</Name>
+                                        <IsOther>false</IsOther>
+                                        <StringCollectionValues>
+                                            <Value>Handler</Value>
+                                        </StringCollectionValues>
+                                    </CategoricalBin>
+                                    <BinCount>10</BinCount>
+                                    <Other>Other</Other>
+                                </TopN>
+                            </Binning>
+                        </TransformationElementType>
+                        <Modified>false</Modified>
+                    </key>
+                    <StringCollectionNames>
+                        <Value>OCCUPATION</Value>
+                    </StringCollectionNames>
+                </MapTransformedSourceType>
+            </TransformedAttributes>
+            <DataProfileSettings>
+                <NumericalBins>10</NumericalBins>
+                <CategoricalBins>10</CategoricalBins>
+                <DateBins>10</DateBins>
+            </DataProfileSettings>
+            <SampleSettings GenerateCache="true" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <Random Seed="12345"/>
+                </Method>
+                <OutputTable CreationDate="2011-03-08T12:06:39.000000" Name="ODMR$12_06_39_073818KVJJGXE"/>
+            </SampleSettings>
+            
+        </Transformation>
+        <ColumnFilter Status="Complete" Name="FilterAI" Id="10004">
+            <Icon SHAPE="RoundRectangle" YCOORD="173" XCOORD="254"></Icon>
+            <Messages/>
+            <CacheSettings GenerateCache="false" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10004" as (SELECT /*+ inline */
+"AFFINITY_CARD"
+, "AGE"
+, "BOOKKEEPING_APPLICATION"
+, "BULK_PACK_DISKETTES"
+, "COUNTRY_NAME"
+, "CUST_GENDER"
+, "CUST_ID"
+, "CUST_INCOME_LEVEL"
+, "CUST_MARITAL_STATUS"
+, "EDUCATION"
+, "FLAT_PANEL_MONITOR"
+, "HOME_THEATER_PACKAGE"
+, "HOUSEHOLD_SIZE"
+, "OCCUPATION"
+, "OS_DOC_SET_KANJI"
+, "PRINTER_SUPPLIES"
+, "YRS_RESIDENCE"
+, "Y_BOX_GAMES"
+
+FROM {INPUT_SOURCE}
+ )</SQLExpression>
+            <ColumnFilterSettings NumberOfRows="2000">
+                <DataQualitySettings ConstantPercent="95.0" UniquePercent="95.0" NullsPercent="95.0"/>
+                <AttrImportantSettings TopN="100" CutOff="0.0">
+                    <TargetAttribute Status="Valid" DataType="NUMBER" Name="AFFINITY_CARD"/>
+                </AttrImportantSettings>
+            </ColumnFilterSettings>
+            <ColumnFilterAttributes AutomaticFilterEnable="No" AutoSpec="Yes">
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="AFFINITY_CARD"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="AGE"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="BOOKKEEPING_APPLICATION"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="BULK_PACK_DISKETTES"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="VARCHAR2" Name="COUNTRY_NAME"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="CHAR" Name="CUST_GENDER"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="CUST_ID"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="VARCHAR2" Name="CUST_INCOME_LEVEL"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="VARCHAR2" Name="CUST_MARITAL_STATUS"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="VARCHAR2" Name="EDUCATION"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="FLAT_PANEL_MONITOR"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="HOME_THEATER_PACKAGE"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="VARCHAR2" Name="HOUSEHOLD_SIZE"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="VARCHAR2" Name="OCCUPATION"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="OS_DOC_SET_KANJI"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="PRINTER_SUPPLIES"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="YRS_RESIDENCE"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="Y_BOX_GAMES"/>
+            </ColumnFilterAttributes>
+            <ColumnFilterResults GenerateImportanceOutput="true" AttrImportanceOutput="ODMR$FILTERAI_AI" DataQualityOutput="ODMR$11_56_19_583892WWAVTCQ">
+                <Attribute Name="AFFINITY_CARD"/>
+                <Attribute Name="AGE"/>
+                <Attribute Name="BOOKKEEPING_APPLICATION"/>
+                <Attribute Name="BULK_PACK_DISKETTES">
+                    <Reason Type="CUTOFF_LIMIT"/>
+                </Attribute>
+                <Attribute Name="COUNTRY_NAME">
+                    <Reason Type="CUTOFF_LIMIT"/>
+                </Attribute>
+                <Attribute Name="CUST_GENDER"/>
+                <Attribute Name="CUST_ID">
+                    <Reason Type="CUTOFF_LIMIT"/>
+                </Attribute>
+                <Attribute Name="CUST_INCOME_LEVEL">
+                    <Reason Type="CUTOFF_LIMIT"/>
+                </Attribute>
+                <Attribute Name="CUST_MARITAL_STATUS"/>
+                <Attribute Name="EDUCATION"/>
+                <Attribute Name="FLAT_PANEL_MONITOR">
+                    <Reason Type="CUTOFF_LIMIT"/>
+                </Attribute>
+                <Attribute Name="HOME_THEATER_PACKAGE"/>
+                <Attribute Name="HOUSEHOLD_SIZE"/>
+                <Attribute Name="OCCUPATION"/>
+                <Attribute Name="OS_DOC_SET_KANJI">
+                    <Reason Type="CONSTANT_LIMIT"/>
+                    <Reason Type="CUTOFF_LIMIT"/>
+                </Attribute>
+                <Attribute Name="PRINTER_SUPPLIES">
+                    <Reason Type="CONSTANT_LIMIT"/>
+                    <Reason Type="CUTOFF_LIMIT"/>
+                </Attribute>
+                <Attribute Name="YRS_RESIDENCE"/>
+                <Attribute Name="Y_BOX_GAMES"/>
+            </ColumnFilterResults>
+        </ColumnFilter>
+        <ColumnFilter Status="Complete" Name="FilterDQ" Id="10008">
+            <Icon SHAPE="RoundRectangle" YCOORD="276" XCOORD="254"></Icon>
+            <Messages/>
+            <CacheSettings GenerateCache="false" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10008" as (SELECT /*+ inline */
+"AFFINITY_CARD"
+, "AGE"
+, "BOOKKEEPING_APPLICATION"
+, "BULK_PACK_DISKETTES"
+, "COUNTRY_NAME"
+, "CUST_GENDER"
+, "CUST_ID"
+, "CUST_INCOME_LEVEL"
+, "CUST_MARITAL_STATUS"
+, "EDUCATION"
+, "FLAT_PANEL_MONITOR"
+, "HOME_THEATER_PACKAGE"
+, "HOUSEHOLD_SIZE"
+, "OCCUPATION"
+, "YRS_RESIDENCE"
+, "Y_BOX_GAMES"
+
+FROM {INPUT_SOURCE}
+ )</SQLExpression>
+            <ColumnFilterSettings NumberOfRows="2000">
+                <DataQualitySettings ConstantPercent="95.0" UniquePercent="95.0" NullsPercent="95.0"/>
+                <AttrImportantSettings/>
+            </ColumnFilterSettings>
+            <ColumnFilterAttributes AutomaticFilterEnable="No" AutoSpec="Yes">
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="AFFINITY_CARD"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="AGE"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="BOOKKEEPING_APPLICATION"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="BULK_PACK_DISKETTES"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="VARCHAR2" Name="COUNTRY_NAME"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="CHAR" Name="CUST_GENDER"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="CUST_ID"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="VARCHAR2" Name="CUST_INCOME_LEVEL"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="VARCHAR2" Name="CUST_MARITAL_STATUS"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="VARCHAR2" Name="EDUCATION"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="FLAT_PANEL_MONITOR"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="HOME_THEATER_PACKAGE"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="VARCHAR2" Name="HOUSEHOLD_SIZE"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="VARCHAR2" Name="OCCUPATION"/>
+                <Attribute Output="No" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="OS_DOC_SET_KANJI"/>
+                <Attribute Output="No" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="PRINTER_SUPPLIES"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="YRS_RESIDENCE"/>
+                <Attribute Output="Yes" AutomaticFiltering="false" Status="Valid" DataType="NUMBER" Name="Y_BOX_GAMES"/>
+            </ColumnFilterAttributes>
+            <ColumnFilterResults GenerateImportanceOutput="false" DataQualityOutput="ODMR$12_07_42_356290AUYDXQZ">
+                <Attribute Name="AFFINITY_CARD"/>
+                <Attribute Name="AGE"/>
+                <Attribute Name="BOOKKEEPING_APPLICATION"/>
+                <Attribute Name="BULK_PACK_DISKETTES"/>
+                <Attribute Name="COUNTRY_NAME"/>
+                <Attribute Name="CUST_GENDER"/>
+                <Attribute Name="CUST_ID"/>
+                <Attribute Name="CUST_INCOME_LEVEL"/>
+                <Attribute Name="CUST_MARITAL_STATUS"/>
+                <Attribute Name="EDUCATION"/>
+                <Attribute Name="FLAT_PANEL_MONITOR"/>
+                <Attribute Name="HOME_THEATER_PACKAGE"/>
+                <Attribute Name="HOUSEHOLD_SIZE"/>
+                <Attribute Name="OCCUPATION"/>
+                <Attribute Name="OS_DOC_SET_KANJI">
+                    <Reason Type="CONSTANT_LIMIT"/>
+                </Attribute>
+                <Attribute Name="PRINTER_SUPPLIES">
+                    <Reason Type="CONSTANT_LIMIT"/>
+                </Attribute>
+                <Attribute Name="YRS_RESIDENCE"/>
+                <Attribute Name="Y_BOX_GAMES"/>
+            </ColumnFilterResults>
+        </ColumnFilter>
+        <FilterDetails Status="Complete" Name="ImportantAttributes" Id="10006">
+            <Icon SHAPE="RoundRectangle" YCOORD="72" XCOORD="256"></Icon>
+            <Messages/>
+            <CacheSettings GenerateCache="false" UseFullData="false">
+                <NumberOfRows>2000</NumberOfRows>
+                <Method>
+                    <TopN/>
+                </Method>
+            </CacheSettings>
+            <SQLExpression>"N$10006" as (SELECT attribute_name as "ATTRIBUTE_NAME",
+  rank as "RANK",
+  importance_value as "IMPORTANCE_VALUE"
+from (ODMR$FILTERAI_AI) )</SQLExpression>
+            <FilterDetailsOutput AutoSpec="Yes" Type="AttributeImportance">
+                <Attributes>
+                    <Attribute Status="Valid" DataType="VARCHAR2" Name="ATTRIBUTE_NAME"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="RANK"/>
+                    <Attribute Status="Valid" DataType="NUMBER" Name="IMPORTANCE_VALUE"/>
+                </Attributes>
+            </FilterDetailsOutput>
+        </FilterDetails>
+    </Nodes>
+    <Links>
+        <Link Label="From &quot;MINING_DATA_BUILD_V&quot; to &quot;ExploreMiningData&quot;" Name="Link" To="10002" From="10001" Id="10003">
+            <ConnectorGraphicsInfo>
+                <Coordinates YCoordinate="0.0" XCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+        <Link Label="From &quot;MINING_DATA_BUILD_V&quot; to &quot;FilterAI&quot;" Name="Link" To="10004" From="10001" Id="10005">
+            <ConnectorGraphicsInfo>
+                <Coordinates YCoordinate="0.0" XCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+        <Link Label="From &quot;FilterAI&quot; to &quot;ImportantAttributes&quot;" Name="Link" To="10006" From="10004" Id="10007">
+            <ConnectorGraphicsInfo>
+                <Coordinates YCoordinate="0.0" XCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+        <Link Label="From &quot;MINING_DATA_BUILD_V&quot; to &quot;FilterDQ&quot;" Name="Link" To="10008" From="10001" Id="10009">
+            <ConnectorGraphicsInfo>
+                <Coordinates YCoordinate="0.0" XCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+        <Link Label="From &quot;FilterAI&quot; to &quot;BinOccupation&quot;" Name="Link" To="10010" From="10004" Id="10011">
+            <ConnectorGraphicsInfo>
+                <Coordinates YCoordinate="0.0" XCoordinate="0.0"/>
+            </ConnectorGraphicsInfo>
+        </Link>
+    </Links>
+</WorkflowProcess>

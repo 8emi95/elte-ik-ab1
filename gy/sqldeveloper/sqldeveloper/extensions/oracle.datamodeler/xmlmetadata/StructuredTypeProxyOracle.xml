@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.storage.oracle.StructuredTypeProxyOracle parentClass="oracle.dbtools.crest.model.design.storage.StructuredTypeProxy">
+   <property name="invokerRights" dataType="java.lang.String" defaultValue="" xmlName="invokerRights" xmlType="element" getter="getInvokerRights" setter="setInvokerRights" reffered="false"/>
+   <property name="mapOrderFunction" dataType="oracle.dbtools.crest.model.design.storage.oracle.MethodProxyOracle" defaultValue="" xmlName="mapOrderFunction" xmlType="element" getter="getMapOrderFunction" setter="setMapOrderFunction" reffered="true"/>
+   <property name="mapOrderType" dataType="java.lang.String" defaultValue="MAP" xmlName="mapOrderType" xmlType="element" getter="getMapOrderType" setter="setMapOrderType" reffered="false"/>
+   <property name="owner" dataType="oracle.dbtools.crest.model.design.storage.oracle.UserOracle" defaultValue="" xmlName="owner" xmlType="element" getter="getOwner" setter="setOwner" reffered="true"/>
+</oracle.dbtools.crest.model.design.storage.oracle.StructuredTypeProxyOracle>

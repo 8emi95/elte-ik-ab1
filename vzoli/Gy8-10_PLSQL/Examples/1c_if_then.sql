@@ -1,0 +1,14 @@
+SET serveroutput ON
+DECLARE 
+  C NUMBER;
+BEGIN
+  C := &A +&B;
+  DBMS_OUTPUT.PUT_LINE(C);
+  IF MOD(ABS(C),2) = 1
+  THEN
+    DBMS_OUTPUT.PUT_LINE(C || '  PÁRATLAN');
+  ELSE
+    DBMS_OUTPUT.PUT_LINE(C || '  PÁROS');
+  END IF;
+END;
+/

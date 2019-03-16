@@ -1,0 +1,40 @@
+2017.03.08.
+4. Adatb1 GY
+
+7. héten ZH (03.29.) !!!!
+
+példatár: 3. fejezet vége épp
+
+
+unió
+különbség
+metszet
+projekció (produktum)
+szelekció (szigma)
+(ró)
+X
+|X|
+(gamma) -> egyszerű relációs algebrában az utsó 4 már nincs
+(szigma)
+(delta)
+rendezés (tau)
+
+kiterjesztett relációs algebra:
+-------------------------------
+
+feladat: ?
+
+produktum_ONEV,at?(szigma_db>1(gamma_ONEV,count(*)eleme v -> ? db, avg(FIZETES) -> stb? (szigma_JUTALEK>0(ró_D(DOLGOZO) x ró_D(OSZTALY)))))
+
+		produktum_...
+		|
+		szigma_...
+		|
+		gamma_...
+		|
+		szigma_...
+		|
+		x
+	ró_D		ró_O
+	|			|
+DOLGOZO		OSZTALY

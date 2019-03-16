@@ -1,0 +1,39 @@
+További gyakorló feladatok újabb táblákra:
+
+NIKOVITS.CIKK     (ckod, cnev, szin, suly)              -- cikkek kódja, neve, színe, súlya
+NIKOVITS.PROJEKT  (pkod, pnev, helyszin)                -- projektek kódja, neve, helyszíne
+NIKOVITS.SZALLITO (szkod, sznev, statusz, telephely)    -- szállítók kódja, neve, státusza, telephelye
+NIKOVITS.SZALLIT  (szkod, ckod, pkod, mennyiseg, datum) -- a szallító a cikket a projekthez szállítja 
+
+Alkérdés (Subselect)  =ANY, <ALL, IN, EXISTS ...
+------------------------------------------------
+-- Adjuk meg azon cikkek kódját és nevét, amelyeket valamelyik pécsi szállító szállít. (-> 'Pecs')
+-- Adjuk meg, hogy hány ilyen cikk van
+-- Adjuk meg azon cikkek kódját és nevét, amelyeket egyik pécsi szállító sem szállít.
+-- Adjuk meg, hogy hány ilyen cikk van
+-- Adjuk meg azon szállítók nevét, akiknek a státusza 10-nél nagyobb és 
+   budapesti projektbe szállítanak szék nevû cikket. (-> 'Budapest', 'szek')
+-- Adjuk meg azon projektek kódját, amelyekhez szállítanak kék cikket. (-> 'kek')
+-- Adjuk meg azon projektek kódját és nevét, amelyekhez szállítanak kék cikket.
+-- Adjuk meg azon projektek kódját és nevét, amelyekhez nem szállítanak kék cikket.
+-- Adjuk meg azon cikkek kódját, amelyeket szállítanak valahova.
+-- Adjuk meg, hogy hány ilyen cikk van.
+-- Adjuk meg azon cikkek kódját, amelyeket nem szállítanak sehova.
+-- Adjuk meg azon cikkek kódját és nevét, amelyeket sehova nem szállítanak.
+-- Adjuk meg azon kék cikkek kódját, amelyeket szállítanak valahova.
+-- Adjuk meg azon piros színû cikkek kódját, amelyeket sehova nem szállítanak. (-> 'piros')
+-- Adjuk meg azon cikkek nevét, amelyeket minden projekthez szállítanak.
+-- Melyik cikket hány különbözõ projekthez szállítják? (ckod, cnev, darab)
+-- Melyik cikket szállítják a legtöbb projekthez? (Leolvassuk a rendezett listából)
+   Majd adjuk meg leolvasás nélkül ROWNUM segítségével.
+-- Adjuk meg azon cikkek nevét, amelyeket valamelyik projekthez nem szállítanak.
+-- Adjuk meg azon cikkek kódját és nevét, amelyeket kevesebb mint 6 projekthez szállítanak.
+-- Adjuk meg azon zöld színû cikkek nevét, amelyeket minden projekthez szállítanak. (-> 'zold')
+-- Adjuk meg azon zöld színû cikkek nevét, amelyet valamelyik projekthez nem szállítanak.
+-- Adjuk meg azon projektek nevét, amelyekhez minden zöld színû cikket szállítanak.
+-- Adjuk meg azon szállítók nevét és telephelyét, akik valamelyik cikket minden projekthez szállítják.
+-- Adjuk meg azon szállítók nevét és telephelyét, akik valamelyik cikket minden pécsi projekthez szállítják.
+-- Adjuk meg azon szállítók nevét és telephelyét, akik valamelyik kék cikket minden projekthez szállítják.
+-- Adjuk meg azon szállítók nevét, akik minden cikket szállítanak minden projekthez.
+-- Adjuk meg azon szállítók nevét, akik minden kék cikket szállítanak minden projekthez.
+
